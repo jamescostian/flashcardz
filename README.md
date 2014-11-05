@@ -49,7 +49,8 @@ var config = {
 		db: 'myflashcardz'
 	}
 }
-var flashcardz = require('flashcardz')(config)
+
+require('flashcardz')(config)
 
 // Add a stack of flashcards
 flashcardz.stacks.add('myStackOfFlashcards', {
