@@ -48,7 +48,8 @@ var config = {
 	rethinkdb: {
 		host: '127.0.0.1',
 		port: 28015,
-		db: 'myflashcardz'
+		db: 'myflashcardz',
+		tablePrefix: '' // totally optional; just adds a prefix to all of the tables flashcardz uses
 	}
 }
 
