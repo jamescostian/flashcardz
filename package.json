@@ -25,6 +25,7 @@
 		"bin": "bin"
 	},
 	"dependencies": {
+		"deep-extend": "0.3.x",
 		"traceur": "0.0.72",
 		"generic-pool": "2.1.x",
 		"rethinkdb": "1.15.x"
