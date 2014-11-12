@@ -27,9 +27,11 @@
 	"dependencies": {
 		"deep-extend": "0.3.x",
 		"generic-pool": "2.1.x",
-		"rethinkdb": "1.15.x"
+		"rethinkdb": "1.15.x",
+		"bluebird": "2.3.x"
 	},
 	"devDependencies": {
+		"validator": "3.22.x",
 		"jshint": "2.5.x",
 		"coveralls": "2.11.x",
 		"mocha": "2.0.x",
