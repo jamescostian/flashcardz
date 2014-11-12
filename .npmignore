@@ -1,5 +1,6 @@
+coverage
 .editorconfig
-gulpfile.js
 .jshintrc
+Makefile
 test
 .travis.yml

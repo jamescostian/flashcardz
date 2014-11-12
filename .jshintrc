@@ -5,7 +5,8 @@
 		"beforeEach": true,
 		"before": true,
 		"afterEach": true,
-		"after": true
+		"after": true,
+		"flashcardz": true
 	},
 	"bitwise": true,
 	"camelcase": false,

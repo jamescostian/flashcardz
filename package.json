@@ -14,7 +14,7 @@
 	],
 	"main": "lib/module.js",
 	"scripts": {
-		"test": "gulp test"
+		"test": "make test"
 	},
 	"bin": {
 		"flash-import": "bin/import",
@@ -26,13 +26,13 @@
 	},
 	"dependencies": {
 		"deep-extend": "0.3.x",
-		"traceur": "0.0.72",
 		"generic-pool": "2.1.x",
 		"rethinkdb": "1.15.x"
 	},
 	"devDependencies": {
-		"gulp": "3.8.x",
-		"gulp-mocha": "1.0.x",
-		"gulp-jshint": "1.8.x"
+		"jshint": "2.5.x",
+		"coveralls": "2.11.x",
+		"mocha": "2.0.x",
+		"istanbul": "0.3.x"
 	}
 }
