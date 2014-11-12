@@ -12,7 +12,7 @@
 	"os": [
 		"!win32"
 	],
-	"main": "index.js",
+	"main": "lib/module.js",
 	"scripts": {
 		"test": "gulp test"
 	},
