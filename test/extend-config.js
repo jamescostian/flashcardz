@@ -1,5 +1,4 @@
 var assert = require('assert')
-var util = require('util')
 
 var extend = require('../lib/extend-config.js')
 
