@@ -12,9 +12,9 @@ mocha:
 	$(MOCHA) --bail
 
 cov:
-	$(ISTANBUL) cover $(MOCHA) -- --reporter spec
+	$(ISTANBUL) cover $(MOCHA)
 
 travis: mocha
-	$(ISTANBUL) cover $(MOCHA) --report lcovonly -- --reporter spec
+	$(ISTANBUL) cover $(MOCHA) --report lcovonly
 
 .PHONY: test jshint mocha cov travis
