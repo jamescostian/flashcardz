@@ -1,8 +1,6 @@
-# Flashcardz [![build status](https://secure.travis-ci.org/jamescostian/flashcardz.png)](http://travis-ci.org/jamescostian/flashcardz)
+# Flashcardz
 
 ## Alpha stage; nowhere near stable or even useable
-
-[![NPM](https://nodei.co/npm/flashcardz.png)](https://nodei.co/npm/flashcardz.png?compact=true)
 
 Intelligently quizes you
 
