@@ -31,6 +31,7 @@
 		"bluebird": "2.3.x"
 	},
 	"devDependencies": {
+		"rimraf": "2.2.x",
 		"validator": "3.22.x",
 		"jshint": "2.5.x",
 		"coveralls": "2.11.x",
