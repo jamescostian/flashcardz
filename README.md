@@ -12,6 +12,12 @@ Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which 
 npm install -g flashcardz
 ```
 
+To use Flashcardz programatically, use
+
+```
+npm install --save flashcardz
+```
+
 # Examples
 
 ## CLI
