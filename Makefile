@@ -14,7 +14,7 @@ mocha:
 cov:
 	$(ISTANBUL) cover $(MOCHA)
 
-travis: mocha
+travis:
 	$(ISTANBUL) cover $(MOCHA) --report lcovonly
 
 .PHONY: test jshint mocha cov travis
