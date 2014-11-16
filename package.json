@@ -17,17 +17,10 @@
 		"test": "make test"
 	},
 	"bin": {
-		"flash-import": "bin/import",
-		"flash": "bin/testme"
-	},
-	"directories": {
-		"lib": "lib",
-		"bin": "bin"
+		"flash": "bin/full-cli"
 	},
 	"dependencies": {
 		"deep-extend": "0.3.x",
-		"generic-pool": "2.1.x",
-		"rethinkdb": "1.15.x",
 		"bluebird": "2.3.x"
 	},
 	"devDependencies": {

@@ -2,11 +2,14 @@
 
 ## Alpha stage; nowhere near stable or even useable
 
+[![Build Status](https://img.shields.io/travis/jamescostian/flashcardz.svg?style=flat)](https://travis-ci.org/jamescostian/flashcardz)
+[![Coverage Status](https://img.shields.io/coveralls/jamescostian/flashcardz.svg?style=flat)](https://coveralls.io/r/jamescostian/flashcardz?branch=master)
+
 Intelligently quizes you
 
 # Installation
 
-Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which is bundled with Node), as well as [RethinkDB](http://rethinkdb.com) you can just run:
+Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which is bundled with Node), installing the CLI is as easy as:
 
 ```
 npm install -g flashcardz
@@ -36,7 +39,7 @@ More formats will be accepted in the future.
 Importing the file with all of your words (assuming your file is called `myfile` and you've installed Flashcardz) is as simple as running: 
 
 ```
-flash-import --type=tab/newline myfile myquiz1
+flash import --type=tab/newline myfile myquiz1
 ```
 
 The command above will import `myfile` to a "stack" named `myquiz1` which you can be quized on if you run:
@@ -48,28 +51,21 @@ flash myquiz1
 ## JS API
 
 ```
-var config = {
-	rethinkdb: {
-		host: '127.0.0.1',
-		port: 28015,
-		db: 'myflashcardz',
-		tablePrefix: '' // totally optional; just adds a prefix to all of the tables flashcardz uses
-	}
-}
-
-require('flashcardz')(config)
+var flashcardz = require('flashcardz')({path: '~/.flashcardz/'})
 
 // Add a stack of flashcards
-flashcardz.stacks.add('myStackOfFlashcards', {
-	ostensible: "stated or appearing to be true, but not necessarily so.",
-	palpable: "able to be touched or felt.",
-	diaphanous: "(especially of fabric) light, delicate, and translucent."
+flashcardz.insert('myStackOfFlashcards', {
+	ostensible: 'stated or appearing to be true, but not necessarily so.',
+	palpable: 'able to be touched or felt.',
+	diaphanous: '(especially of fabric) light, delicate, and translucent.'
 })
 
 // Get quized on the terminal with that stack of flashcards
-flashcardz.quiz('myStackOfFlashcards')
+flashcardz.quiz(flashcardz.get('myStackOfFlashcards'))
+// (optional) save the quiz data
+flashcardz.save('myStackOfFlashcards')
 
-// Get the term that you struggled with most from the quiz(es)
-var hardestTermID = flashcardz.stats('myStackOfFlashcards', 'hardest') // ex: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
-console.log(flashcardz.stacks.nameByID(hardestTermID)) // ex: "palpable"
+// Get the term that you struggled with most from the quiz
+var hardestCard = flashcardz.hardest(flashcardz.get('myStackOfFlashcards'))
+console.log(hardestCard.front + ' is a difficult word.') // ex: 'palpable is a difficult word.'
 ```
