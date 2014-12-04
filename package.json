@@ -20,8 +20,7 @@
 		"flash": "bin/full-cli"
 	},
 	"dependencies": {
-		"deep-extend": "0.3.x",
-		"bluebird": "2.3.x"
+		"deep-extend": "0.3.x"
 	},
 	"devDependencies": {
 		"rimraf": "2.2.x",
