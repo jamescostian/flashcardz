@@ -1,20 +1,20 @@
 MODULE_BINS = node_modules/.bin
 JSHINT = $(MODULE_BINS)/jshint
-MOCHA = $(MODULE_BINS)/_mocha
+TAPE = $(MODULE_BINS)/tape
+FAUCET = $(MODULE_BINS)/faucet
 ISTANBUL = $(MODULE_BINS)/istanbul
 
-test: jshint mocha
+unit:
+	$(FAUCET) test/start.js
+
+test: jshint unit
 
 jshint:
 	$(JSHINT) package.json lib test
 
-mocha:
-	$(MOCHA) --bail
-
 cov:
-	$(ISTANBUL) cover $(MOCHA)
+	$(ISTANBUL) cover $(TAPE) test/start.js
 
-travis:
-	$(ISTANBUL) cover $(MOCHA) --report lcovonly
+travis: jshint cov
 
-.PHONY: test jshint mocha cov travis
+.PHONY: unit test jshint cov travis

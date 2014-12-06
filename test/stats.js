@@ -1,9 +1,9 @@
-var assert = require('assert')
+var test = require('tape')
 var easiest = require('../lib/stats/easiest.js')
 var hardest = require('../lib/stats/hardest.js')
 var sort = require('../lib/stats/sort.js')
 
-describe('stats', function () {
+test('stats', function (t) {
 	var input = [
 		{
 			front: 'ostensible',
@@ -47,52 +47,29 @@ describe('stats', function () {
 		}
 	]
 
-	describe('sort', function () {
-		it('should be able to sort based on how many times someone got a card wrong', function () {
-			var actual = input.sort(sort.missesAscending)
-			assert.deepEqual(actual, expected)
-		})
-		it('should be able to sort based on how many times someone got a card right', function () {
-			var actual = input.sort(sort.hitsAscending)
-			assert.deepEqual(actual, expected)
-		})
-		it('should be able to sort based on "hardness" (wrong/(wrong+right))', function () {
-			var actual = input.sort(sort.hardnessAscending)
-			assert.deepEqual(actual, expected)
-		})
+	t.test('* sort', function (t) {
+		var actual = input.sort(sort.missesAscending)
+		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card wrong')
+		actual = input.sort(sort.hitsAscending)
+		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card right')
+		actual = input.sort(sort.hardnessAscending)
+		t.deepEqual(actual, expected, 'should sort based on "hardness" (wrong/(wrong+right))')
+		t.end()
 	})
-	describe('hardest', function () {
-		it('should work, even without being given all of the arguments it accepts', function () {
-			assert.deepEqual(hardest(input), expected[2])
-		})
-		it('should not return an array if count = 1', function () {
-			assert.deepEqual(hardest(input, 1), expected[2])
-		})
-		it('should pay attention to the count argument', function () {
-			assert.deepEqual(hardest(input, 2), [expected[2], expected[1]])
-		})
-		it('should allow the key argument to take the place of the count argument', function () {
-			assert.deepEqual(hardest(input, 'front'), expected[2].front)
-		})
-		it('should allow both the key and the count to be set', function () {
-			assert.deepEqual(hardest(input, 2, 'front'), [expected[2].front, expected[1].front])
-		})
+	t.test('* hardest', function (t) {
+		t.deepEqual(hardest(input), expected[2], 'should work even without being given all of the arguments it accepts')
+		t.deepEqual(hardest(input, 1), expected[2], 'should not return an array if count = 1')
+		t.deepEqual(hardest(input, 2), [expected[2], expected[1]], 'should pay attention to the count argument')
+		t.deepEqual(hardest(input, 'front'), expected[2].front, 'should allow the key argument to take the place of the count argument')
+		t.deepEqual(hardest(input, 2, 'front'), [expected[2].front, expected[1].front], 'should allow both the key and the count to be set')
+		t.end()
 	})
-	describe('easiest', function () {
-		it('should work, even without being given all of the arguments it accepts', function () {
-			assert.deepEqual(easiest(input), expected[0])
-		})
-		it('should not return an array if count = 1', function () {
-			assert.deepEqual(easiest(input, 1), expected[0])
-		})
-		it('should pay attention to the count argument', function () {
-			assert.deepEqual(easiest(input, 2), [expected[0], expected[1]])
-		})
-		it('should allow the key argument to take the place of the count argument', function () {
-			assert.deepEqual(easiest(input, 'front'), expected[0].front)
-		})
-		it('should allow both the key and the count to be set', function () {
-			assert.deepEqual(easiest(input, 2, 'front'), [expected[0].front, expected[1].front])
-		})
+	t.test('* easiest', function (t) {
+		t.deepEqual(easiest(input), expected[0], 'should work even without being given all of the arguments it accepts')
+		t.deepEqual(easiest(input, 1), expected[0], 'should not return an array if count = 1')
+		t.deepEqual(easiest(input, 2), [expected[0], expected[1]], 'should pay attention to the count argument')
+		t.deepEqual(easiest(input, 'front'), expected[0].front, 'should allow the key argument to take the place of the count argument')
+		t.deepEqual(easiest(input, 2, 'front'), [expected[0].front, expected[1].front], 'should allow both the key and the count to be set')
+		t.end()
 	})
 })
