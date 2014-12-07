@@ -58,9 +58,11 @@ test('API integration', function (t) {
 
 	// Don't save; just refersh to emptiness
 	flashcardz.refresh()
+	// Since myStackOfFlashcardz wasn't saved, one should be able to make a new stack with the same name
 	flashcardz.insert('myStackOfFlashcards', expectedModel)
 	t.deepEqual(flashcardz.get('myStackOfFlashcards'), expectedModel)
 	flashcardz.save()
+	t.deepEqual(flashcardz.loadStacks(undefined, ['myStackOfFlashcards']).myStackOfFlashcards, expectedModel)
 
 	t.throws(function () {
 		flashcardz.loadStack('yo')
@@ -68,6 +70,9 @@ test('API integration', function (t) {
 
 	var myCopyOfStacks = (function(x){return x}(flashcardz.stacks))
 	t.deepEqual(flashcardz.loadStacks(), myCopyOfStacks)
+
+	// Shouldn't throw
+	flashcardz.save('myStackOfFlashcards')
 
 	require('rimraf').sync(thePath)
 	t.end()
