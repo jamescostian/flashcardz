@@ -1,13 +1,5 @@
 {
-	"globals": {
-		"describe": true,
-		"it": true,
-		"beforeEach": true,
-		"before": true,
-		"afterEach": true,
-		"after": true,
-		"flashcardz": true
-	},
+	"globals": {},
 	"bitwise": true,
 	"camelcase": false,
 	"curly": true,
