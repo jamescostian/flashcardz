@@ -39,14 +39,14 @@ More formats will be accepted in the future.
 
 Importing the stack would look like this:
 
-```
-flash import --type=tab/newline myfile myquiz1
+```bash
+flash --import --type=tab/newline --file=myfile myquiz1
 ```
 
 The command above will import `myfile` to a "stack" named `myquiz1` which you can be quized on if you run:
 
-```
-flash myquiz1
+```bash
+flash --quiz myquiz1
 ```
 
 ## JS API
