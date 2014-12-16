@@ -25,7 +25,7 @@ npm install --save flashcardz
 
 ## CLI
 
-I'm going to assume you have a file called `myfile` which has a number of term-definition pairs, where the pairs are separated by newlines and the terms are separated from their definitions by tabs. Here's an example of a file in this format:
+Say you have a file called `myfile` with flashcards (each card has a "front" and a "back" - normally, you see the front first and have to recall what the back is). Let's say `myfile` looks like this:
 
 ```
 ostensible	stated or appearing to be true, but not necessarily so.
@@ -33,10 +33,11 @@ palpable	able to be touched or felt.
 diaphanous	(especially of fabric) light, delicate, and translucent.
 ```
 
-If you can find your terms on [Quizlet](http://quizlet.com), you can just export them and by default they will already be in this format.
+**ProTip™**: if you're studying stuff on [Quizlet](http://quizlet.com), you can just export your set of cards with the default settings.
+
 More formats will be accepted in the future.
 
-Importing the file with all of your words (assuming your file is called `myfile` and you've installed Flashcardz) is as simple as running: 
+Importing the stack would look like this:
 
 ```
 flash import --type=tab/newline myfile myquiz1
