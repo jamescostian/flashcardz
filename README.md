@@ -11,13 +11,13 @@ Intelligently quizes you
 
 Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which is bundled with Node), installing the CLI is as easy as:
 
-```
+```bash
 npm install -g flashcardz
 ```
 
 To use Flashcardz programatically, use
 
-```
+```bash
 npm install --save flashcardz
 ```
 
@@ -51,8 +51,9 @@ flash myquiz1
 
 ## JS API
 
-```
-var flashcardz = require('flashcardz')({path: '~/.flashcardz/'})
+```js
+// Initialize flashcardz, and save everything in ~/test/
+var flashcardz = require('flashcardz')({path: '~/test/'})
 
 // Add a stack of flashcards
 flashcardz.insert('myStackOfFlashcards', {
