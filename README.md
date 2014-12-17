@@ -71,3 +71,24 @@ flashcardz.save('myStackOfFlashcards')
 var hardestCard = flashcardz.hardest(flashcardz.get('myStackOfFlashcards'))
 console.log(hardestCard.front + ' is a difficult word.') // ex: 'palpable is a difficult word.'
 ```
+
+# API
+
+## Initialization
+
+First of all, you need to initialize Flashcardz. Here's one way to initialize Flashcardz
+
+```js
+var flashcardz = require('flashcardz')()
+```
+
+The above code will instruct Flashcardz to save all of its data in the `~/.flashcardz` directory (which will be created if it does not exist). Flashcardz will also automatically read stuff from that directory (not all files in that directory! Only the files that Flashcardz uses).
+
+You can also make flashcardz save everything in a different directory:
+
+```js
+var flashcardz = require('flashcardz')({path: __dirname + '/special/path'})
+```
+
+The rest of this API documentation assumes that you have already initialized Flashcardz with one of the above methods. I'm also going to use `f` for `flashcardz`.
+
