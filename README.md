@@ -92,3 +92,34 @@ var flashcardz = require('flashcardz')({path: __dirname + '/special/path'})
 
 The rest of this API documentation assumes that you have already initialized Flashcardz with one of the above methods. I'm also going to use `f` for `flashcardz`.
 
+## Walk-Through
+
+This API is kinda meant to be a walk-through like in a video game. Get ready to try out some code! First do this:
+
+```bash
+npm install flashcardz
+node
+```
+
+And then type in:
+
+```js
+var f = require('flashcardz')()
+```
+
+And then you'll be set!
+
+## Note About Files
+
+Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. Here's a list of things that mess with the file system and alternatives that do not touch the file system:
+
++ `f.getList` - use `Object.keys(f.stacks)` instead
++ `f.loadStack` - use `f.insertStack`
++ `f.loadStacks` - use `f.insertStack` for each stack
++ `f.refresh` - use `f.stacks = {}` and then use `f.insertStack` for each stack
++ `f.save` - no alternatives
++ `f.import` - no alternatives
+
+Also, please note that all file system reading/writing is done **synchronously**. I wanted the whole API to be synchronous, because I felt like that made the API simpler.
+
+Each stack of flashcards gets its own file, which starts with the name of the stack and ends with `.flashcardz-stack`
