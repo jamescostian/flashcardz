@@ -123,3 +123,56 @@ Flashcardz can read and write files, and make directories. But, it **will not to
 Also, please note that all file system reading/writing is done **synchronously**. I wanted the whole API to be synchronous, because I felt like that made the API simpler.
 
 Each stack of flashcards gets its own file, which starts with the name of the stack and ends with `.flashcardz-stack`
+
+## `f.insertStack(stackName, stack)`
+
+Aliased to `f.insert` for brevity.
+
+Pass it a name for the stack and the stack itself. For example:
+
+```js
+f.insert('hi', [
+		{
+			front: 'ostensible',
+			back: 'stated or appearing to be true, but not necessarily so.',
+			right: 3,
+			wrong: 5
+		},
+		{
+			front: 'palpable',
+			back: 'able to be touched or felt.',
+			right: 0,
+			wrong: 6
+		}
+])
+```
+
+But that code is way too long. So if you're fine with assuming that the user has never gotten the card right or wrong, you can just do something like this:
+
+```js
+f.insert('theSameAsHi', {
+	ostensible: 'stated or appearing to be true, but not necessarily so.',
+	palpable: 'able to be touched or felt.'
+})
+```
+
+If you try to insert a stack with the same name as another stack, this function will throw an error.
+
+If you use the longer form of expressing a stack, the `right` and `wrong` keys are optional, and they both default to 0.
+
+## `f.insertCard(stackName, card)`
+
+Pass it the name of the stack in which you'd like to insert the card, as well as the card itself. Just like `f.insertStack()`, this function supports 2 different ways of defining cards. The following two examples are equivalent:
+
+```js
+f.insertCard('hi', {
+	front: 'ostensible',
+	back: 'stated or appearing to be true, but not necessarily so.',
+	right: 0,
+	wrong: 0
+})
+// is the same as
+f.insertCard('hi', {'ostensible': 'stated or appearing to be true, but not necessarily so.'})
+```
+
+If you use the longer form of expressing a stack, the `right` and `wrong` keys are optional, and they both default to 0.
