@@ -176,3 +176,41 @@ f.insertCard('hi', {'ostensible': 'stated or appearing to be true, but not neces
 ```
 
 If you use the longer form of expressing a stack, the `right` and `wrong` keys are optional, and they both default to 0.
+
+## `f.getStack(stackName)`
+
+This is kinda pointless. It's just a short hand for `f.stacks[stack]`. This is also known as `f.get()`
+
+## `f.setCard(stackName, identification, card)`
+
+Allows you to modify a card that already exists in a stack.
+
+This will run `f.setByFront()` or `f.setByID()` based on whether you pass it a number (in which case `f.setByID()` will be run) or a string (in which case `f.setByFront()` will be run).
+
+## `f.setByID(stackName, id, card)`
+
+This will find the card via `f.stacks[stackName][id]` and then update it based on what `card` says. Since cards are stored as objects with 4 keys (front, back, right, and wrong), the card you pass in as an argument will be used as a mask that overwrites certain parts of the object, but leaves other parts alone. Here's an example:
+
+```js
+f.setByID('hi', 0, {wrong: 9})
+assert.deepEqual(f.get('hi')[0], {
+	front: 'ostensible',
+	back: 'stated or appearing to be true, but not necessarily so.',
+	right: 3,
+	wrong: 9
+})
+```
+
+## `f.setByFront(stackName, front, card)`
+
+This will find the card via `f.idByFront()` and then update it based on what `card` says. It's just like `f.setByID()` except it accepts the front of the card as parameter. Here's an example:
+
+```js
+f.setByFront('hi', 'palpable', {back: 'jk'})
+assert.deepEqual(f.get('hi')[1], {
+	front: 'palpable',
+	back: 'jk',
+	right: 0,
+	wrong: 6
+})
+```
