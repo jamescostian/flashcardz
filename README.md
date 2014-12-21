@@ -214,3 +214,31 @@ assert.deepEqual(f.get('hi')[1], {
 	wrong: 6
 })
 ```
+
+## `f.gotWrong(stackName, id)`
+
+This will increment the number of times a card was gotten wrong. For example:
+
+```js
+f.gotWrong('theSameAsHi', 1)
+assert.deepEqual(f.get('theSameAsHi')[1], {
+	front: 'palpable',
+	back: 'able to be touched or felt.',
+	right: 0,
+	wrong: 1
+})
+```
+
+## `f.gotRight(stackName, id)`
+
+This will increment the number of times a card was gotten right. For example:
+
+```js
+f.gotRight('theSameAsHi', 1)
+assert.deepEqual(f.get('theSameAsHi')[1], {
+	front: 'palpable',
+	back: 'able to be touched or felt.',
+	right: 1,
+	wrong: 1
+})
+```
