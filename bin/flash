@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+var program = require('commander')
+
+program
+	.version(require('../package.json').version)
+	.usage('[command] [options]')
+	.command('import <file> <name> <format>', 'import a stack of cards')
+	.command('quiz <name>', 'get quized on a stack')
+	.command('ls', 'list all stacks')
+	.command('rm [names...]', 'remove 1+ stack(s)')
+	.command('mv <oldname> <newname>', 'rename a stack')
+	.command('cp <stackname> <newstackname>', 'copy a stack')
+	.parse(process.argv)
