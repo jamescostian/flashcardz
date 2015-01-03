@@ -17,7 +17,7 @@
 		"test": "make test"
 	},
 	"bin": {
-		"flash": "bin/cli"
+		"flash": "bin/flash"
 	},
 	"dependencies": {
 		"deep-extend": "0.3.x"
