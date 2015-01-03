@@ -20,7 +20,8 @@
 		"flash": "bin/flash"
 	},
 	"dependencies": {
-		"deep-extend": "0.3.x"
+		"deep-extend": "0.3.x",
+		"commander": "2.6.x"
 	},
 	"devDependencies": {
 		"rimraf": "2.2.x",
