@@ -111,14 +111,14 @@ And then you'll be set!
 
 ## Note About Files
 
-Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. Here's a list of things that mess with the file system and alternatives that do not touch the file system:
+Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. If you intend to use the file system, you ought to run `f.refresh()` before working with flashcardz. If you intend to avoid the file system, here's a list of things that mess with the file system:
 
-+ `f.getList` - use `Object.keys(f.stacks)` instead
-+ `f.loadStack` - use `f.insertStack`
-+ `f.loadStacks` - use `f.insertStack` for each stack
-+ `f.refresh` - use `f.stacks = {}` and then use `f.insertStack` for each stack
-+ `f.save` - no alternatives
-+ `f.import` - no alternatives
++ `f.getList`
++ `f.loadStack`
++ `f.loadStacks`
++ `f.refresh`
++ `f.save`
++ `f.import`
 
 Also, please note that all file system reading/writing is done **synchronously**. I wanted the whole API to be synchronous, because I felt like that made the API simpler.
 
