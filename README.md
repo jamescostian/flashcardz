@@ -276,6 +276,8 @@ f.save()
 // Now the stacks hi and theSameAsHi have both been saved
 ```
 
+**NOTE**: If you might run `f.save()` without any arguments, you should run `f.refresh()` ASAP because if you run `f.save()` *before* you've loaded up old flashcards, the old flashcards will be deleted. Also, remember that, `f.refresh()` **will** overwrite any changes you make.
+
 ## `f.loadStacks(refreshList)`
 
 Returns all of the stacks from the file system. If you set `refreshList` to `true`, then this function will load the latest list of stacks from the file system. Other wise, the list of stacks will be found with `Object.keys(f.stacks)`.
@@ -311,6 +313,10 @@ f.getList() // ['hi', 'theSameAsHi']
 ## `f.refresh()`
 
 A shortcut for `f.stacks = f.loadStacks(true)`
+
+If you might run `f.save()` without any arguments, you should run `f.refresh()` ASAP because if you run `f.save()` *before* you've loaded up old flashcards, the old flashcards will be deleted.
+
+This *will* overwrite stuff.
 
 ## `f.hardest(stack, count, key)`
 
