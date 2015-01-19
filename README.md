@@ -49,6 +49,8 @@ The command above will import `myfile` to a "stack" named `myquiz1` which you ca
 flash quiz myquiz2
 ```
 
+The CLI has many other commands. If you run `flash help` you can see a list of them and the arguments they take. You can also get help for individual commands with `flash help [command]`, e.g. `flash help import`
+
 ## JS API
 
 ```js
