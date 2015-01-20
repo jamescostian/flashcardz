@@ -3,6 +3,7 @@
 	"description": "Intelligently quizes you",
 	"repository": "https://github.com/jamescostian/flashcardz",
 	"version": "0.1.0",
+	"license": "MIT",
 	"contributors": [
 		"James Costian <james@jamescostian.com> (http://jamescostian.com)"
 	],
