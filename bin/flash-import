@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+var program = require('commander')
+
+program
+	.version(require('../package.json').version)
+	.usage('[options] <file> <name> <format>')
+	.option('-p, --path [dir]', 'Path where flashcardz are [~/.flashcardz]', '~/.flashcardz')
+	.parse(process.argv)
+
+if (program.args.length !== 3) {
+	console.error('You must provide exactly 3 arguments! You can see the usage with --help')
+	process.exit()
+}
+else {
+	var f = require('../lib/module.js')({path: program.path})
+	var file = program.args[0]
+	var name = program.args[1]
+	var format = program.args[2]
+	console.log('Importing ' + file + ' (type: ' + format + ') into a new stack called ' + name)
+	f.refresh()
+	f.insertStack(name, f.import(file, format))
+	f.save()
+}
