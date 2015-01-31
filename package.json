@@ -29,9 +29,9 @@
 	},
 	"devDependencies": {
 		"rimraf": "2.2.x",
-		"jshint": "2.5.x",
+		"jshint": "2.6.x",
 		"coveralls": "2.11.x",
-		"tape": "3.0.x",
+		"tape": "3.5.x",
 		"faucet": "0.0.1",
 		"istanbul": "0.3.x"
 	}
