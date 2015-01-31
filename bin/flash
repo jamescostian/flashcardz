@@ -10,4 +10,6 @@ program
 	.command('rm [names...]', 'remove 1+ stack(s)')
 	.command('mv <oldname> <newname>', 'rename a stack')
 	.command('cp <stackname> <newstackname>', 'copy a stack')
+	.command('hardest [name]', 'see the hardest card in a stack (JSON)')
+	.command('easiest [name]', 'see the easiest card in a stack (JSON)')
 	.parse(process.argv)
