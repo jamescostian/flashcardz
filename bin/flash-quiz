@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+var program = require('commander')
+// var updateNotifier = require('update-notifier')
+// updateNotifier({pkg: require('../package.json')}).notify()
+
+program
+	.version(require('../package.json').version)
+	.usage('[options] <name>')
+	.option('-p, --path [dir]', 'Path where flashcardz are [~/.flashcardz]', '~/.flashcardz')
+	.parse(process.argv)
+
+if (program.args.length !== 1) {
+	console.error('You must provide the name of the stack to be quizzed on!')
+	process.exit()
+}
+else {
+	var f = require('../lib/module.js')({path: program.path})
+	f.refresh()
+	console.log('Each question is the back of a card. Type in what\'s on the front of the card')
+	console.log('When you want to stop, just push ctrl+c and everything will be saved.')
+	f.quiz(program.args[0])
+	process.on('exit', function () {
+		f.save()
+		console.log('Saved progress')
+	})
+}
