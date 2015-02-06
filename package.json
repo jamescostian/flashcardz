@@ -15,7 +15,11 @@
 	],
 	"main": "lib/module.js",
 	"scripts": {
-		"test": "make test"
+		"lint": "jshint package.json lib test",
+		"pretest": "npm run lint",
+		"test": "faucet test/start.js",
+		"cov": "istanbul cover tape test/start.js",
+		"travis": "npm run lint && npm run cov"
 	},
 	"bin": {
 		"flash": "bin/flash"
