@@ -8,5 +8,5 @@ matrix:
     allow_failures:
         - node_js: "0.11"
     fast_finish: true
-script: "make travis"
+script: "npm run travis"
 after_script: "cat ./coverage/lcov.info | coveralls"
