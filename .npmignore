@@ -1,6 +1,5 @@
 coverage
 .editorconfig
 .jshintrc
-Makefile
 test
 .travis.yml
