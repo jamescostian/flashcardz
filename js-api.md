@@ -6,7 +6,7 @@ First of all, you need to initialize Flashcardz. Here's one way to initialize Fl
 var flashcardz = require('flashcardz')()
 ```
 
-The above code will instruct Flashcardz to save all of its data in the `~/.flashcardz` directory (which will be created if it does not exist). Flashcardz will also automatically read stuff from that directory (not all files in that directory! Only the files that Flashcardz uses).
+The above code will instruct Flashcardz to read/write all of its data in the `~/.flashcardz` directory (which will be created if it does not exist). If you do not want Flashcardz to not touch the filesystem, read the [Note About Files](#note-about-files).
 
 You can also make flashcardz save everything in a different directory:
 
@@ -35,11 +35,11 @@ And then you'll be set!
 
 # Note About Files
 
-Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. If you intend to use the file system, you ought to run `f.refresh()` before working with flashcardz. If you intend to avoid the file system, here's a list of things that mess with the file system:
+Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. If you intend to use the file system, you ought to run `f.refresh()` immediately after initializing flashcardz. If you intend to avoid the file system, here's a list of things that you should not use:
 
-+ `f.getList`
 + `f.loadStack`
 + `f.loadStacks`
++ `f.getList` - use `Object.keys(f.stacks)` to avoid the filesystem
 + `f.refresh`
 + `f.save`
 + `f.import`
