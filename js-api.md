@@ -103,7 +103,7 @@ If you use the longer form of expressing a stack, the `right` and `wrong` keys a
 
 # `f.getStack(stackName)`
 
-This is kinda pointless. It's just a short hand for `f.stacks[stack]`. This is also known as `f.get()`
+Returns all of the cards in the stack as an array with each card represented by an object. It's just a short hand for `f.stacks[stack]`. There's also a shorthand version of this method: `f.get()`
 
 # `f.setCard(stackName, identification, card)`
 
