@@ -3,3 +3,4 @@ coverage
 .jshintrc
 test
 .travis.yml
+.istanbul.yml
