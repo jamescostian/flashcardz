@@ -1,22 +1,29 @@
-# Initialization
+# Introduction
 
-First of all, you need to initialize Flashcardz. Here's one way to initialize Flashcardz
-
-```js
-var flashcardz = require('flashcardz')()
-```
-
-The above code will instruct Flashcardz to read/write all of its data in the `~/.flashcardz` directory (which will be created if it does not exist). If you do not want Flashcardz to not touch the filesystem, read the [Note About Files](#note-about-files).
-
-You can also make flashcardz save everything in a different directory:
+This document assumes that you're providing flashcards in a specific format. Flashcardz expects all of the flashcards to be in an array, and it expects that all of the flashcards are objects. Each flashcard object is expected to have a `front` and `back`, as well as `right` and `wrong` (`right` is the number of times the person has gotten that card right, and `wrong` is the number of times the person has gotten that card wrong). Here's an example data set:
 
 ```js
-var flashcardz = require('flashcardz')({path: __dirname + '/special/path'})
+var cards = [
+	{
+		front: 'ostensible',
+		back: 'stated or appearing to be true, but not necessarily so.',
+		right: 3,
+		wrong: 5
+	},
+	{
+		front: 'palpable',
+		back: 'able to be touched or felt.',
+		right: 0,
+		wrong: 6
+	}
+]
 ```
 
-The rest of this API documentation assumes that you have already initialized Flashcardz with one of the above methods. I'm also going to use `f` for `flashcardz`.
+It's also worth noting every method here is idempotent, and none of them will mutate your arrays. For example, if you use `f.gotWrong(cards, 4)`, the card at the index of 4 will not be marked wrong in the array `cards` - instead, a new array will be returned containing all of the old array's cards, and in that new array the card at index 4 will be marked wrong. This allows for functional-style programming.
 
-# Walk-Through
+Another note: `f.quiz` is the only method with "side-effects"
+
+## Walk-Through
 
 This API is kinda meant to be a walk-through like in a video game. Get ready to try out some code! First do this:
 
@@ -28,301 +35,154 @@ node
 And then type in:
 
 ```js
-var f = require('flashcardz')()
+var f = require('flashcardz')
 ```
 
-And then you'll be set!
+Finally, copy and paste the example data set near the top of this documentation.
 
-# Note About Files
+Feel free to ignore the explanations and just copy and paste the code examples and play around. What follows is the actual documentation.
 
-Flashcardz can read and write files, and make directories. But, it **will not touch the file system unless you tell it to**. If you intend to use the file system, you ought to run `f.refresh()` immediately after initializing flashcardz. If you intend to avoid the file system, here's a list of things that you should not use:
+# `f.gotWrong(stack, id)`
 
-+ `f.loadStack`
-+ `f.loadStacks`
-+ `f.getList` - use `Object.keys(f.stacks)` to avoid the filesystem
-+ `f.refresh`
-+ `f.save`
-+ `f.import`
-
-Also, please note that all file system reading/writing is done **synchronously**. I wanted the whole API to be synchronous, because I felt like that made the API simpler.
-
-Each stack of flashcards gets its own file, which starts with the name of the stack and ends with `.flashcardz-stack`
-
-# `f.insertStack(stackName, stack)`
-
-Aliased to `f.insert` for brevity.
-
-Pass it a name for the stack and the stack itself. For example:
+This will return a new array with the number of times a card was gotten wrong incremented. For example:
 
 ```js
-f.insert('hi', [
-		{
-			front: 'ostensible',
-			back: 'stated or appearing to be true, but not necessarily so.',
-			right: 3,
-			wrong: 5
-		},
-		{
-			front: 'palpable',
-			back: 'able to be touched or felt.',
-			right: 0,
-			wrong: 6
-		}
-])
+cards[0].wrong = 5
+cards = f.gotWrong(cards, 0)
+// cards[0].wrong = 6
 ```
 
-But that code is way too long. So if you're fine with assuming that the user has never gotten the card right or wrong, you can just do something like this:
+# `f.gotRight(stack, id)`
+
+This will return a new array with the number of times a card was gotten right incremented. For example:
 
 ```js
-f.insert('theSameAsHi', {
-	ostensible: 'stated or appearing to be true, but not necessarily so.',
-	palpable: 'able to be touched or felt.'
-})
+cards[1].right = 10
+cards = f.gotRight(cards, 1)
+// cards[1].right = 11
 ```
 
-If you try to insert a stack with the same name as another stack, this function will throw an error.
-
-If you use the longer form of expressing a stack, the `right` and `wrong` keys are optional, and they both default to 0.
-
-# `f.insertCard(stackName, card)`
-
-Pass it the name of the stack in which you'd like to insert the card, as well as the card itself. Just like `f.insertStack()`, this function supports 2 different ways of defining cards. The following two examples are equivalent:
-
-```js
-f.insertCard('hi', {
-	front: 'ostensible',
-	back: 'stated or appearing to be true, but not necessarily so.',
-	right: 0,
-	wrong: 0
-})
-// is the same as
-f.insertCard('hi', {'ostensible': 'stated or appearing to be true, but not necessarily so.'})
-```
-
-If you use the longer form of expressing a stack, the `right` and `wrong` keys are optional, and they both default to 0.
-
-# `f.getStack(stackName)`
-
-Returns all of the cards in the stack as an array with each card represented by an object. It's just a short hand for `f.stacks[stack]`. There's also a shorthand version of this method: `f.get()`
-
-# `f.setCard(stackName, identification, card)`
-
-Allows you to modify a card that already exists in a stack.
-
-This will run `f.setByFront()` or `f.setByID()` based on whether you pass it a number (in which case `f.setByID()` will be run) or a string (in which case `f.setByFront()` will be run).
-
-# `f.setByID(stackName, id, card)`
-
-This will find the card via `f.stacks[stackName][id]` and then update it based on what `card` says. Since cards are stored as objects with 4 keys (front, back, right, and wrong), the card you pass in as an argument will be used as a mask that overwrites certain parts of the object, but leaves other parts alone. Here's an example:
-
-```js
-f.setByID('hi', 0, {wrong: 9})
-assert.deepEqual(f.get('hi')[0], {
-	front: 'ostensible',
-	back: 'stated or appearing to be true, but not necessarily so.',
-	right: 3,
-	wrong: 9
-})
-```
-
-# `f.setByFront(stackName, front, card)`
-
-This will find the card via `f.idByFront()` and then update it based on what `card` says. It's just like `f.setByID()` except it accepts the front of the card as parameter. Here's an example:
-
-```js
-f.setByFront('hi', 'palpable', {back: 'jk'})
-assert.deepEqual(f.get('hi')[1], {
-	front: 'palpable',
-	back: 'jk',
-	right: 0,
-	wrong: 6
-})
-```
-
-# `f.gotWrong(stackName, id)`
-
-This will increment the number of times a card was gotten wrong. For example:
-
-```js
-f.gotWrong('theSameAsHi', 1)
-assert.deepEqual(f.get('theSameAsHi')[1], {
-	front: 'palpable',
-	back: 'able to be touched or felt.',
-	right: 0,
-	wrong: 1
-})
-```
-
-# `f.gotRight(stackName, id)`
-
-This will increment the number of times a card was gotten right. For example:
-
-```js
-f.gotRight('theSameAsHi', 1)
-assert.deepEqual(f.get('theSameAsHi')[1], {
-	front: 'palpable',
-	back: 'able to be touched or felt.',
-	right: 1,
-	wrong: 1
-})
-```
-
-# `f.idByFront(stackName, front)`
-
-This will find the ID of the first card with a specific front in a stack. Here's an example:
-
-```js
-assert.equal(f.idByFront('hi', 'ostensible'), 0)
-```
-
-# `f.idsByFront(stackName, front)`
+# `f.idsByFront(stack, front)`
 
 This will make a list of IDs of every card with a specific front in a stack. Here's an example:
 
 ```js
-assert.deepEqual(f.idsByFront('theSameAsHi', 'ostensible'), [0])
+f.idsByFront(cards, 'ostensible') // [0]
 ```
 
-# `f.save(stackName, stack)`
+If the `front` is not found, an empty array is returned.
 
-If you just run `f.save()` without any arguments, all of the stacks on the file system will be deleted and then all of the stacks in `f.stacks` will be saved. If you pass a stack's name, then that stack will be saved on the file system but no other stacks will be touched. If you pass a stack's name and a stack, then that stack will be saved with the stack's name.
+# `f.idByFront(stack, front)`
 
-Here's an example:
-
-```
-// Only save hi
-f.save('hi')
-// Save a stack (that doesn't exist) called bye, and the stack should be the same as hi
-f.save('bye', f.get('hi'))
-
-// Save everything. Note that since the stack called bye was never really inserted, it will be deleted.
-f.save()
-// Now the stacks hi and theSameAsHi have both been saved
-```
-
-**NOTE**: If you might run `f.save()` without any arguments, you should run `f.refresh()` ASAP because if you run `f.save()` *before* you've loaded up old flashcards, the old flashcards will be deleted. Also, remember that, `f.refresh()` **will** overwrite any changes you make.
-
-# `f.loadStacks(refreshList)`
-
-Returns all of the stacks from the file system. If you set `refreshList` to `true`, then this function will load the latest list of stacks from the file system. Other wise, the list of stacks will be found with `Object.keys(f.stacks)`.
-
-So if you insert a stack and don't save it, and then you run `f.loadStacks()`, an error will be thrown because the stack will be found by `Object.keys(f.stacks)` but it will not exist on the file system. However, if you run `f.loadStacks(true)` then no error will be thrown because Flashcardz will figure out which things have actually been saved and reload them.
-
-Here's an example:
+This will find the ID of the first card with a specific front in a stack. Here's an example:
 
 ```js
-f.loadStacks() // {hi: {/* flashcards in the stack called hi */}, theSameAsHi: {/* flashcards in the stack called theSameAsHi */}}
+f.idByFront(cards, 'ostensible') // 0
 ```
 
-# `f.loadStack(stackName)`
-
-Given the name of a stack which has been saved on the file system, returns that stack from the file system.
-
-Here's an example:
-
-```js
-f.loadStack('hi') // {/* flashcards in the stack called hi */}
-```
-
-# `f.getList()`
-
-Gets a list of all of the stacks, based on what has been saved on the file system.
-
-Here's an example:
-
-```js
-f.getList() // ['hi', 'theSameAsHi']
-```
-
-# `f.refresh()`
-
-A shortcut for `f.stacks = f.loadStacks(true)`
-
-If you might run `f.save()` without any arguments, you should run `f.refresh()` ASAP because if you run `f.save()` *before* you've loaded up old flashcards, the old flashcards will be deleted.
-
-This *will* overwrite stuff.
+This is almost the same as `f.idsByFront(stack, front)[0]` except faster, and if the `front` is not found then this will return -1.
 
 # `f.hardest(stack, count, key)`
 
-Given a stack, returns the hardest term. Hardness is calculated by the number of times the user got the card wrong divided by the number of times they got it right plus the number of times they got it wrong. This returns the card. Also, you don't have to provide an actual stack, you can just provide a stack's name. For example:
+Given a stack, returns the hardest term. Hardness is calculated by the number of times the user got the card wrong divided by the number of times they got it right plus the number of times they got it wrong. This returns the card. For example:
 
 ```js
-var card = f.hardest('theSameAsHi')
-assert.equal(card.front, 'palpable')
+f.hardest(cards) // the #1 hardest card
+// e.g. {front: 'palpable', ...}
 ```
 
 You can also ask for the 2 hardest, or the 3 hardest, or even the *n* hardest if you just use the count variable. For example:
 
 ```js
-var cards = f.hardest('theSameAsHi', 2)
-assert.equal(cards[0].front, 'palpable')
-assert.equal(cards[1].front, 'ostensible')
+f.hardest(cards, 2) // the 2 hardest cards, in an array
+// e.g. [{front: 'palpable', ...}, {front: 'ostensible', ...}]
 ```
 
 You can also ask for a particular key of the hardest card. For example:
 
 ```js
-assert.equal(f.hardest('theSameAsHi', 'front'), 'palpable')
+f.hardest(cards, 'front') // the front of the #1 hardest card
+// e.g. 'palpable'
 ```
 
 In fact, you can combine the two features above:
 
 ```js
-assert.equal(f.hardest('theSameAsHi', 2, 'front'), ['palpable', 'ostensible'])
+f.hardest(cards, 2, 'front') // the fronts of the 2 hardest cards
+// e.g. ['palpable', 'ostensible']
 ```
 
 # `f.easiest(stack, count, key)`
 
-Just like `f.hardest()` except this one returns the easiest term.
+Just like `f.hardest()` except this one returns the easiest card (or cards if you provide a `count` > 1, or parts of cards if you provide a `key`).
 
-# `f.import(name, type)`
+# `f.convert(data, type)`
 
-Given the name of a file (`name`) and the type of file (`type`), this will "import" the file and return the file as a stack. Currently, the only type supported is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
-
-```js
-// If you're walking through the code, then don't run the following code.
-// It only works if you have a file named myfile with cards
-var stack = f.import(__dirname + '/myfile', 'tab/newline')
-f.insertStack('myNewStack', stack)
-```
-
-# `f.quiz(stackName)`
-
-Starts a quiz. Here's an example:
+Given some sort of `data` (which is not in the flashcardz format) and the type of data (`type`), this will the data in the Flashcardz format. Currently, there are only 3 types accepted. One is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
 
 ```js
-f.quiz('theSameAsHi')
+var exampleTabNewline = 'front of card' + '\t' + 'back of card'
+	+ '\n' + front of a different card' + '\t' + 'back of this card'
+	+ '\n' + this card has been' + '\t' + 'gotten wrong 4 times and right 2 times' + '\t' + '4' + '\t' + '2'
+
+f.convert(exampleTabNewline, 'tab/newline') // returns something like:
+// [{front: 'front of card', back: 'back of card', right: 0, wrong: 0}, ...]
 ```
 
-# `f.config`
-
-Stores the configuration for Flashcardz. It's just an object, and only has one key at the moment: `path`. So if you ran `f=require('flashcardz')({path: 'x'})` then `f.config` would be `{path: 'x'}`. You can also run stuff like `f=require('flashcardz')({path: '/usr', foo: 'bar'})` for and then `f.config` will be `{path: '/usr', foo: 'bar'}`
-
-# `f.stacks`
-
-Stores all of the Flashcardz stacks in an object. Keys are names of stacks, and their values are actual stacks. Here's an example of what `f.stacks` may contain:
+You can also provide `f.convert` with streams as data instead of strings. In addition, you can also convert "objecty" flashcards:
 
 ```js
-{
-	myStackOfFlashcards: [
-		{
-			front: 'ostensible',
-			back: 'stated or appearing to be true, but not necessarily so.',
-			right: 0,
-			wrong: 0
-		},
-		{
-			front: 'palpable',
-			back: 'able to be touched or felt.',
-			right: 0,
-			wrong: 0
-		},
-		{
-			front: 'daiphonous',
-			back: '(especially of fabric) light, delicate, and translucent.',
-			right: 0,
-			wrong: 0
-		}
-	]
-}
+f.convert({
+	ostensible: 'stated or appearing to be true, but not necessarily so.',
+	palpable: 'able to be touched or felt.'
+}, 'objecty') // puts those^ flashcards into the Flashcardz format
 ```
+
+`f.convert` can also be used to normalize flashcards by giving them values they should have. For example:
+
+```js
+f.convert(var cards = [
+	{
+		front: 'ostensible',
+		wrong: 5
+	},
+	{
+		front: 'palpable',
+		back: 'able to be touched or felt.'
+	}
+], 'nice')
+// Returns:
+// [
+//     {
+//         front: 'ostensible',
+//         back: 'unspecified',
+//         right: 0,
+//         wrong: 5
+//     },
+//     {
+//         front: 'palpable',
+//         back: 'able to be touched or felt.',
+//         right: 0,
+//         wrong: 0
+//     }
+// ]
+```
+
+# `f.quiz(stack, options)`
+
+Get quizzed over `stack` based on `options`. By default, this will actually ask the user questions about the card using the terminal, although this behavior can be overriden through `options`. `f.quiz` returns a promise which resolves to the stack after the quiz. Here's an example:
+
+```js
+f.quiz(cards).then(function (cards) {
+	console.log('The quiz is over. Here is the (promised) value:')
+	console.log(cards)
+})
+```
+
+If a user gets a question wrong during the quiz, that will be marked in the new array which `f.quiz` promises to give you.
+
+`f.quiz` will take options that allow overriding its behavior but those are currently not implemented.
+
+# `f.copy(array)`
+
+A very general function for copying arrays. It works for copying stacks of flashcards, and is used internally, but it's still a very general function.
