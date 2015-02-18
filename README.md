@@ -38,21 +38,19 @@ diaphanous	(especially of fabric) light, delicate, and translucent.
 
 **ProTip™**: if you're studying stuff on [Quizlet](http://quizlet.com), you can just export your set of cards with the default settings.
 
-More formats will be accepted in the future.
-
-Importing the stack would look like this:
+Converting that file to a Flashcardz stack would look like this:
 
 ```bash
-flash import myfile myquiz1 tab/newline
+flash convert myfile tab/newline > mystack
 ```
 
-The command above will import `myfile` to a "stack" named `myquiz1` which you can be quized on if you run:
+The command above will convert `myfile` to a "stack" which would be saved as `mystack` which you can be quized on if you run:
 
 ```bash
-flash quiz myquiz2
+flash quiz mystack
 ```
 
-The CLI has many other commands. If you run `flash help` you can see a list of them and the arguments they take. You can also get help for individual commands with `flash help [command]`, e.g. `flash help import`
+The CLI has many other commands. If you run `flash help` you can see a list of them and the arguments they take. You can also get help for individual commands with `flash help [command]`, e.g. `flash help convert`
 
 ## JS API
 
