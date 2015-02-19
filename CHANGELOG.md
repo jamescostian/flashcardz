@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. This projec
 - `f.import()` became `f.convert()` and no long
 - Update README.md to match API and CLI changes
 - Update js-api.md to match API changes
+- `flash import` removed in favor of `flash convert`
 
 ### Removed
 - Everything that touched the filesystem or was OOP-like
