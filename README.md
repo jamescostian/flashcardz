@@ -55,24 +55,21 @@ The CLI has many other commands. If you run `flash help` you can see a list of t
 ## JS API
 
 ```js
-// Initialize flashcardz, and save everything in ~/test/
-var flashcardz = require('flashcardz')({path: '~/test/'})
+var f = require('flashcardz')
 
-// Add a stack of flashcards
-flashcardz.insert('myStackOfFlashcards', {
+// Convert this nice-looking object with flashcards into the Flashcardz format
+var myCards = f.convert({
 	ostensible: 'stated or appearing to be true, but not necessarily so.',
 	palpable: 'able to be touched or felt.',
 	diaphanous: '(especially of fabric) light, delicate, and translucent.'
-})
+}, 'objecty')
 
-// Get quized on the terminal with that stack of flashcards
-flashcardz.quiz(flashcardz.get('myStackOfFlashcards'))
-// (optional) save the quiz data
-flashcardz.save('myStackOfFlashcards')
+// Get quized on the terminal over 1 card in that stack of flashcards
+var myCardsAfterQuiz = flashcardz.quiz(myCards, flashcardz.cliQuizzer, flashcardz.pick.random)
 
-// Get the term that you struggled with most from the quiz
-var hardestCard = flashcardz.hardest(flashcardz.get('myStackOfFlashcards'))
-console.log(hardestCard.front + ' is a difficult word.') // ex: 'palpable is a difficult word.'
+// Get the term that you struggled with most from quizzes
+var hardestCard = flashcardz.hardest(myCardsAfterQuiz)
+console.log(hardestCard.front + ' is a difficult word.') // ex: 'ostensible is a difficult word.'
 ```
 
 # Documentation
