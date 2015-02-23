@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Removed
 - Everything that touched the filesystem or was OOP-like
+- `extend-config`
 - `f.insertStack()`
 - `f.insertCard()`
 - `f.getStack()`
