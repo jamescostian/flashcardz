@@ -168,20 +168,35 @@ f.convert(var cards = [
 // ]
 ```
 
-# `f.quiz(stack, options)`
+# `f.quiz(...)`
 
-Get quizzed over `stack` based on `options`. By default, this will actually ask the user questions about the card using the terminal, although this behavior can be overriden through `options`. `f.quiz` returns a promise which resolves to the stack after the quiz. Here's an example:
+`f.quiz()` returns a promise for the new state after the quiz, it's really up to you to decide how to implement a lot of its details. You can provide a `quizzer` function - an asynchronous function that actually quizzes the user on 1 card and promises to return that card's new state (which may have it's `wrong` or `right` key increased, or even have a new, custom key). You can also provide a function that picks which card the user will be quizzed over - `picker` - and synchronously returns the ID of the card picked in the stack.
+
+Here are all of the different signatures that `f.quiz` supports:
+
+`f.quiz(card, quizzer)` returns `quizzer(card)`. Basically, `f.quiz(card, quizzer)` is for getting quizzed over 1 card.
+
+`f.quiz(stack, quizzer, picker)` puts `stack` through `picker` (i.e. `picker(stack)`), which should pick one card to be quizzed over, and then that card should be put through `quizzer`. Once `quizzer`'s promise is resolved, the card should be updated to whatever `quizzer`'s promise resolved to. In other words, `f.quiz(stack, quizzer, picker)` returns a promise for the new state of the stack after the user has been quizzed over one card.
+
+Flashcardz comes with a quizzer: `f.cliQuizzer`. This quizzer will quiz the user from their terminal. Here are some examples of how to use it:
 
 ```js
-f.quiz(cards).then(function (cards) {
-	console.log('The quiz is over. Here is the (promised) value:')
-	console.log(cards)
-})
+f.quiz(cards[0], f.cliQuizzer) // get quizzed over the first card
+f.quiz(cards[0], f.cliQuizzer({show: 'back', answer: 'front'})) // see the back of the card, guess the front
 ```
 
-If a user gets a question wrong during the quiz, that will be marked in the new array which `f.quiz` promises to give you.
+Flashcardz also comes with 4 pickers:
 
-`f.quiz` will take options that allow overriding its behavior but those are currently not implemented.
++ `hard` - show the hardest cards first
++ `easy` - show the easiest cards first
++ `even` - try to make every card shown the same number of times
++ `random` or `shuffle` - show the cards in a random order
+
+Here's an example of how to get quizzed over a random card:
+
+```js
+f.quiz(cards, f.cliQuizzer, f.pick.random)
+```
 
 # `f.copy(array)`
 
