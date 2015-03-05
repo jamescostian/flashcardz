@@ -1,4 +1,8 @@
-require('./extend-config.js')
-require('./stats.js')
-require('./integration/api/start.js')
-require('./integration/quiz/start.js')
+// Test out JS in the lib dir
+require('./lib/copy.js')
+require('./lib/dedupe.js')
+require('./lib/stats.js')
+require('./lib/id-by-front.js')
+require('./lib/ids-by-front.js')
+require('./lib/convert.js')
+require('./lib/quiz.js')

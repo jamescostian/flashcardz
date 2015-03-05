@@ -1,7 +1,9 @@
 var test = require('tape')
-var easiest = require('../lib/stats/easiest.js')
-var hardest = require('../lib/stats/hardest.js')
-var sort = require('../lib/stats/sort.js')
+var gotRight = require('../../lib/stats/got-right.js')
+var gotWrong = require('../../lib/stats/got-wrong.js')
+var easiest = require('../../lib/stats/easiest.js')
+var hardest = require('../../lib/stats/hardest.js')
+var sort = require('../../lib/stats/sort.js')
 
 test('stats', function (t) {
 	var input = [
@@ -70,6 +72,18 @@ test('stats', function (t) {
 		t.deepEqual(easiest(input, 2), [expected[0], expected[1]], 'should pay attention to the count argument')
 		t.deepEqual(easiest(input, 'front'), expected[0].front, 'should allow the key argument to take the place of the count argument')
 		t.deepEqual(easiest(input, 2, 'front'), [expected[0].front, expected[1].front], 'should allow both the key and the count to be set')
+		t.end()
+	})
+
+	t.test('* gotWrong and gotRight', function (t) {
+		var newExpected = gotWrong(expected, 0)
+		expected[0].wrong += 1
+		t.deepEqual(newExpected, expected, 'it was marked wrong')
+
+		newExpected = gotRight(expected, 1)
+		expected[1].right += 1
+		t.deepEqual(newExpected, expected, 'it was marked right')
+
 		t.end()
 	})
 })

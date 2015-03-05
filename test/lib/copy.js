@@ -1,5 +1,5 @@
 var test = require('tape')
-var copy = require('../lib/copy.js')
+var copy = require('../../lib/copy.js')
 
 test('copy', function (t) {
 	var original = []
