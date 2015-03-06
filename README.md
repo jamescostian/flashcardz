@@ -76,6 +76,8 @@ console.log(hardestCard.front + ' is a difficult word.') // ex: 'ostensible is a
 
 Documentation for the JS API is [here](https://github.com/jamescostian/flashcardz/tree/master/js-api.md), in `js-api.md`
 
+Documentation for the CLI is [here](https://github.com/jamescostian/flashcardz/tree/master/cli.md), in `cli.md`
+
 # License
 
 This is licensed under the [MIT License](https://github.com/jamescostian/flashcardz/tree/master/LICENSE)
