@@ -4,6 +4,7 @@ var gotWrong = require('../../lib/stats/got-wrong.js')
 var easiest = require('../../lib/stats/easiest.js')
 var hardest = require('../../lib/stats/hardest.js')
 var sort = require('../../lib/stats/sort.js')
+var copy = require('../../lib/copy.js')
 
 test('stats', function (t) {
 	var input = [
@@ -50,11 +51,11 @@ test('stats', function (t) {
 	]
 
 	t.test('* sort', function (t) {
-		var actual = input.sort(sort.missesAscending)
+		var actual = copy(input).sort(sort.missesAscending)
 		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card wrong')
-		actual = input.sort(sort.hitsAscending)
+		actual = copy(input).sort(sort.hitsAscending)
 		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card right')
-		actual = input.sort(sort.hardnessAscending)
+		actual = copy(input).sort(sort.hardnessAscending)
 		t.deepEqual(actual, expected, 'should sort based on "hardness" (wrong/(wrong+right))')
 		t.end()
 	})
