@@ -33,6 +33,16 @@ var input = [
 ]
 
 test('quiz', function (t) {
+        t.test('* simple abilities', function (t) {
+		t.plan(1)
+
+		// Without a picker function, quiz should be like calling the quizzer function directly on the data
+		var output = quiz('hello world', function (x) {
+			return x
+		})
+		t.equal(output, 'hello, world')
+	})
+
 	t.test('* correct answer', function (t) {
 		t.plan(1)
 		mockIO.start()
