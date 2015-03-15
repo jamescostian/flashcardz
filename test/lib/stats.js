@@ -57,6 +57,8 @@ test('stats', function (t) {
 		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card right')
 		actual = copy(input).sort(sort.hardnessAscending)
 		t.deepEqual(actual, expected, 'should sort based on "hardness" (wrong/(wrong+right))')
+		actual = copy(input).sort(sort.timesSeenAscending)
+		t.deepEqual(actual, expected, 'should sort based on times seen')
 		t.end()
 	})
 	t.test('* hardest', function (t) {
