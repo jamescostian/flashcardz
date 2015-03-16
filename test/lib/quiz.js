@@ -40,7 +40,7 @@ test('quiz', function (t) {
 		var output = quiz('hello world', function (x) {
 			return x
 		})
-		t.equal(output, 'hello, world')
+		t.equal(output, 'hello world')
 	})
 
 	t.test('* correct answer', function (t) {
