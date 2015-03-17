@@ -4,6 +4,7 @@ var gotWrong = require('../../lib/stats/got-wrong.js')
 var easiest = require('../../lib/stats/easiest.js')
 var hardest = require('../../lib/stats/hardest.js')
 var sort = require('../../lib/stats/sort.js')
+var pick = require('../../lib/stats/pick.js')
 var copy = require('../../lib/copy.js')
 
 test('stats', function (t) {
@@ -60,6 +61,22 @@ test('stats', function (t) {
 		actual = copy(input).sort(sort.timesSeenAscending)
 		t.deepEqual(actual, expected, 'should sort based on times seen')
 		t.end()
+	})
+	t.test('* pick', function (t) {
+		t.plan(5)
+
+		// For random and shuffle (they're the same), test whether the returned value exists in the stack
+		var actual = pick.random(input)
+		t.ok(actual < input.length && actual >= 0)
+		actual = pick.shuffle(input)
+		t.ok(actual < input.length && actual >= 0)
+
+		actual = pick.even(input)
+		t.equal(actual, 0)
+		actual = pick.easy(input)
+		t.equal(actual, 0)
+		actual = pick.hard(input)
+		t.equal(actual, 1)
 	})
 	t.test('* hardest', function (t) {
 		t.deepEqual(hardest(input), expected[2], 'should work even without being given all of the arguments it accepts')
