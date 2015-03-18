@@ -25,6 +25,9 @@
 		"flash": "bin/flash"
 	},
 	"dependencies": {
+		"mock-stdin": "0.3.x",
+		"std-mocks": "1.0.x",
+		"bluebird": "2.9.x",
 		"inquirer": "0.8.x",
 		"untildify": "2.0.x",
 		"update-notifier": "0.3.x",
@@ -32,7 +35,6 @@
 		"commander": "2.6.x"
 	},
 	"devDependencies": {
-		"rimraf": "2.2.x",
 		"jshint": "2.6.x",
 		"coveralls": "2.11.x",
 		"tape": "3.5.x",
