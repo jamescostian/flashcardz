@@ -1,5 +1,7 @@
 {
-	"globals": {},
+	"globals": {
+		"Promise": true
+	},
 	"bitwise": true,
 	"camelcase": false,
 	"curly": true,
