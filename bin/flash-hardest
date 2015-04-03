@@ -1,15 +1,24 @@
 #!/usr/bin/env node
+var stackBuffer = ''
+process.stdin.setEncoding('utf8')
+process.stdin.on('data', function (data) {
+	stackBuffer += data
+})
+
+var f = require('../lib/module.js')
 var program = require('commander')
+var fs = require('fs')
 
 program
 	.version(require('../package.json').version)
-	.usage('[options] [name]')
-	.option('-p, --path [dir]', 'Path where flashcardz are [~/.flashcardz]', '~/.flashcardz')
+	.description('Given a file (or JSON from STDIN), prints the hardest card (or hardest cards with -n)')
+	.usage('[options] <file>')
 	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
 	.option('-n, --count [number]', 'Number of cards to show [1]', '1')
 	.parse(process.argv)
 
 var spaces
+// Allow users to get tab-indented JSON instead of space-indented JSON
 if (program.spaces === '\t' || program.spaces === '\\t') {
 	spaces = '\t'
 }
@@ -17,7 +26,23 @@ else {
 	spaces = parseInt(program.spaces)
 }
 
-var f = require('../lib/module.js')({path: program.path})
-f.refresh()
-var hardest = f.hardest(f.stacks[program.args[0]], parseInt(program.count))
-console.log(JSON.stringify(hardest, null, spaces))
+var count = parseInt(program.count)
+
+if (program.args.length === 1) {
+	var stack = JSON.parse(fs.readFileSync(program.args[0]))
+	if (count === -1) {
+		count = stack.length
+	}
+	var hardest = f.hardest(stack, count)
+	console.log(JSON.stringify(hardest, null, spaces))
+}
+else {
+	process.stdin.on('end', function () {
+		var stack = JSON.parse(stackBuffer)
+		if (count === -1) {
+			count = stack.length
+		}
+		var hardest = f.hardest(stack, count)
+		console.log(JSON.stringify(hardest, null, spaces))
+	})
+}
