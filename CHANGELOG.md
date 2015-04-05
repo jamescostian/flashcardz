@@ -29,6 +29,14 @@ All notable changes to this project will be documented in this file. This projec
 - `f.refresh()`
 - `f.config`
 - `f.stacks`
+- `flash ls`
+- `flash cat`
+- `flash write`
+- `flash append`
+- `flash rm`
+- `flash mv`
+- `flash cp`
+
 
 ### Added
 - `f.copy()` - get a copy of an array
