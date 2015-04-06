@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 - `f.easiest()`, `f.hardest()`, `f.gotWrong()`, and `f.gotRight()` no longer accept stack names, only stack arrays
 - `f.idByFront()` and `f.idsByFront()` take stack arrays instead of stack names
 - `f.import()` became `f.convert()` and no long
+- Made most binary files accept data from STDIN
 - Update README.md to match API and CLI changes
 - Update js-api.md to match API changes
 - `flash import` removed in favor of `flash convert`
