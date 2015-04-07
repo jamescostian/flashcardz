@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+var stackBuffer = ''
+process.stdin.setEncoding('utf8')
+process.stdin.on('data', function (data) {
+	stackBuffer += data
+})
+
+var f = require('../lib/module.js')
+var program = require('commander')
+var fs = require('fs')
+
+program
+	.version(require('../package.json').version)
+	.description('Given a file (or JSON from STDIN), prints the program in converted form')
+	.usage('[options] <file> <format>')
+	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+	.parse(process.argv)
+
+
+var spaces
+// Allow users to get tab-indented JSON instead of space-indented JSON
+if (program.spaces === '\t' || program.spaces === '\\t') {
+	spaces = '\t'
+}
+else {
+	spaces = parseInt(program.spaces)
+}
+
+
+if (program.args.length === 0) {
+	console.error('You must provide at least one argument - the format - if you want to work with STDIN. Otherwise, provide a file name and a format. You can see the usage with --help')
+	process.exit()
+}
+else if (program.args.length === 1) {
+	process.stdin.on('end', function () {
+		var converted = f.convert(stackBuffer, program.args[0])
+		console.log(JSON.stringify(converted, null, spaces))
+	})
+}
+else {
+	var converted = f.convert(fs.readFileSync(program.args[0]), program.args[1])
+	console.log(JSON.stringify(converted, null, spaces))
+	process.exit()
+}
