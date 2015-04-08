@@ -35,6 +35,7 @@ if (program.args.length === 1) {
 	}
 	var easiest = f.easiest(stack, count)
 	console.log(JSON.stringify(easiest, null, spaces))
+	process.exit()
 }
 else {
 	process.stdin.on('end', function () {
@@ -44,5 +45,6 @@ else {
 		}
 		var easiest = f.easiest(stack, count)
 		console.log(JSON.stringify(easiest, null, spaces))
+		process.exit()
 	})
 }

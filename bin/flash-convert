@@ -35,6 +35,7 @@ else if (program.args.length === 1) {
 	process.stdin.on('end', function () {
 		var converted = f.convert(stackBuffer, program.args[0])
 		console.log(JSON.stringify(converted, null, spaces))
+		process.exit()
 	})
 }
 else {
