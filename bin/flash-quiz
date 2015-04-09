@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 var stackBuffer = ''
-var ttys = require('ttys')
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function (data) {
 	stackBuffer += data
 })
 
 var program = require('commander')
-var tmp = require('tmp')
 var fs = require('fs')
 var quizzer = require('./quizzer.js')
 
-// var updateNotifier = require('update-notifier')
-// updateNotifier({pkg: require('../package.json')}).notify()
+var updateNotifier = require('update-notifier')
+updateNotifier({pkg: require('../package.json')}).notify()
 
 program
 	.version(require('../package.json').version)
