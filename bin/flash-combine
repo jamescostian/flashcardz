@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+var program = require('commander')
+var fs = require('fs')
+
+program
+	.version(require('../package.json').version)
+	.description('Given 1+ file(s), prints a combination of all of their cards')
+	.usage('[options] <file> [morefiles...]')
+	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+	.parse(process.argv)
+
+var spaces
+// Allow users to get tab-indented JSON instead of space-indented JSON
+if (program.spaces === '\t' || program.spaces === '\\t') {
+	spaces = '\t'
+}
+else {
+	spaces = parseInt(program.spaces)
+}
+
+var combined = program.args.reduce(function (finalArray, fileName) {
+	return finalArray.concat(JSON.parse(fs.readFileSync(fileName)))
+}, [])
+
+console.log(JSON.stringify(combined, null, spaces))
+process.exit()
