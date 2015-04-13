@@ -44,6 +44,8 @@ All notable changes to this project will be documented in this file. This projec
 - `f.dedupe()` - remove duplicate cards from a stack
 - `f.convert()` now also accepts types "objecty" and "nice" - more info [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md#fconvertdata-type)
 - More tests - it's Flashcardz's goal to always have 100% code coverage
+- `flash combine` - for combining multiple Flashcardz files
+- `flash dedupe` - remove duplicate terms
 
 ## v0.1.0 - 2015-02-13
 This was a preview release
