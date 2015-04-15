@@ -1,6 +1,6 @@
 # Flashcardz
 
-## Alpha stage; nowhere near stable or even useable
+## WARNING: this project is far from ready
 
 [![Build Status](https://img.shields.io/travis/jamescostian/flashcardz.svg?style=flat)](https://travis-ci.org/jamescostian/flashcardz)
 [![Coverage Status](https://img.shields.io/coveralls/jamescostian/flashcardz.svg?style=flat)](https://coveralls.io/r/jamescostian/flashcardz?branch=master)
@@ -36,7 +36,7 @@ palpable	able to be touched or felt.
 diaphanous	(especially of fabric) light, delicate, and translucent.
 ```
 
-**ProTip™**: if you're studying stuff on [Quizlet](http://quizlet.com), you can just export your set of cards with the default settings.
+**ProTip™**: if you're studying stuff on [Quizlet](http://quizlet.com), you can just export your set of cards with the default settings to get a file like `myfile` in this example
 
 Converting that file to a Flashcardz stack would look like this:
 
