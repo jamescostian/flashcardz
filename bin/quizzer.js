@@ -17,7 +17,7 @@ module.exports = function (path, cliOpts) {
 }
 
 function startTheQuiz(options) {
-	f.quiz(stack, f.cliQuizzer(options), f.pick.even).then(function (newStack) {
+	f.quiz(stack, f.cliQuizzer(options), f.pick.hard).then(function (newStack) {
 		stack = newStack
 		startTheQuiz(options)
 	})
