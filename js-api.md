@@ -187,6 +187,7 @@ f.quiz(cards[0], f.cliQuizzer({show: 'back', answer: 'front'})) // see the back 
 
 Flashcardz also comes with 4 pickers:
 
++ `improve` - the default, which is like a combination of hard, even, and random
 + `hard` - show the hardest cards first
 + `easy` - show the easiest cards first
 + `even` - try to make every card shown the same number of times

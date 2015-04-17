@@ -6,6 +6,9 @@ module.exports = function (path, cliOpts) {
 	var file = fs.readFileSync(path)
 	stack = JSON.parse(file)
 
+	// Clear the screen
+	process.stdout.write('\x1bc')
+
 	console.log('Each question is the back of a card. Type in what\'s on the front of the card')
 	console.log('When you want to stop, just push ctrl+c and everything will be saved.')
 
@@ -17,7 +20,7 @@ module.exports = function (path, cliOpts) {
 }
 
 function startTheQuiz(options) {
-	f.quiz(stack, f.cliQuizzer(options), f.pick.hard).then(function (newStack) {
+	f.quiz(stack, f.cliQuizzer(options), f.pick.improve).then(function (newStack) {
 		stack = newStack
 		startTheQuiz(options)
 	})
