@@ -3,8 +3,7 @@ var fs = require('fs')
 var stack
 var lastCardID = Number.MAX_VALUE
 var thePath
-module.exports = function (path, cliOpts) {
-	var options = {}
+module.exports = function (path, options) {
 	var file = fs.readFileSync(path)
 	stack = JSON.parse(file)
 	thePath = path
@@ -14,6 +13,14 @@ module.exports = function (path, cliOpts) {
 
 	console.log('Each question is the back of a card. Type in what\'s on the front of the card')
 	console.log('When you want to stop, just push ctrl+c and everything will be saved.')
+
+	// Don't allow options.show to match options.answer
+	if (options.show === 'back') {
+		options.answer = 'front'
+	}
+	if (options.answer === 'front') {
+		options.show = 'back'
+	}
 
 	startTheQuiz(options)
 }

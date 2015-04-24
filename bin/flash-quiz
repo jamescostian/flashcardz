@@ -10,6 +10,8 @@ program
 	.version(require('../package.json').version)
 	.description('Given a file to be quizzed over, quizzes you')
 	.usage('[options] <name>')
+	.option('-s, --show [front/back/both]', 'Which side to show [front]', 'front')
+	.option('-a, --answer [front/back]', 'Which side is the answer [back]', 'back')
 	.parse(process.argv)
 
 if (program.args.length < 1) {
