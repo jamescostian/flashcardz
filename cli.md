@@ -93,13 +93,15 @@ Assuming I have a bunch of files which are exports from Quizlet, and they're all
 # Loop through all of the files
 for file in *
 do
-	# Convert the file to it's old name plus ".json"
+	# Convert the file to its old name plus ".json"
 	flash convert $file tab/newline > "$(echo $file).json"
 	# Remove the old file
 	rm $file
 done
-# Combine all of the files left and remove duplicates
-flash combine * | flash dedupe > ../perfect-stack
+# Combine all of the files left
+flash combine *.json > new
+# Remove duplicate cards
+flash dedupe new > perfect-stack
 # Get quizzed over that new combined + deduped stack
-flash quiz ../perfect-stack
+flash quiz perfect-stack
 ```
