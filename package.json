@@ -8,7 +8,7 @@
 		"James Costian <james@jamescostian.com> (http://jamescostian.com)"
 	],
 	"engines": {
-		"node": "0.10"
+		"node": "0.12"
 	},
 	"os": [
 		"!win32"
