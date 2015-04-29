@@ -1,23 +1,33 @@
-# Introduction
+# Format
 
-This document assumes that you're providing flashcards in a specific format. Flashcardz expects all of the flashcards to be in an array, and it expects that all of the flashcards are objects. Each flashcard object is expected to have a `front` and `back`, as well as `right` and `wrong` (`right` is the number of times the person has gotten that card right, and `wrong` is the number of times the person has gotten that card wrong). Here's an example data set:
+This document assumes that you're providing flashcards in a specific format. Flashcardz expects all of the flashcards to be in an array, and it expects that all of the flashcards are objects. Each flashcard object is expected to have a `front` and `back`, as well as `history`. `history` is an array of objects, where each object represents a time when a user responded to a quiz. Each of those event objects is a regular object with at least a `time` (which points to a `Date` object that says when the user responded to the quiz) and a `recalled` key (which is either true or false, where true means that they got it right). Here's an example of a stack of cards in this format:
 
 ```js
 var cards = [
 	{
 		front: 'ostensible',
 		back: 'stated or appearing to be true, but not necessarily so.',
-		right: 3,
-		wrong: 5
+		history: [
+			{
+				time: new Date(),
+				recalled: true
+			}
+		]
 	},
 	{
 		front: 'palpable',
 		back: 'able to be touched or felt.',
-		right: 0,
-		wrong: 6
+		history: [
+			{
+				time: new Date(),
+				recalled: false
+			}
+		]
 	}
 ]
 ```
+
+Based on the above example, one can gather that there are only 2 cards in that stack
 
 It's also worth noting every method here is idempotent, and none of them will mutate your arrays. For example, if you use `f.gotWrong(cards, 4)`, the card at the index of 4 will not be marked wrong in the array `cards` - instead, a new array will be returned containing all of the old array's cards, and in that new array the card at index 4 will be marked wrong. This allows for functional-style programming.
 
