@@ -57,9 +57,8 @@ Feel free to ignore the explanations and just copy and paste the code examples a
 This will return a new array with the number of times a card was gotten wrong incremented. For example:
 
 ```js
-cards[0].wrong = 5
 cards = f.gotWrong(cards, 0)
-// cards[0].wrong = 6
+cards[0].history // contains another event where the card was gotten wrong (recalled: false)
 ```
 
 # `f.gotRight(stack, id)`
@@ -67,9 +66,8 @@ cards = f.gotWrong(cards, 0)
 This will return a new array with the number of times a card was gotten right incremented. For example:
 
 ```js
-cards[1].right = 10
 cards = f.gotRight(cards, 1)
-// cards[1].right = 11
+cards[1].history // contains another event where the card was gotten right (recalled: true)
 ```
 
 # `f.idsByFront(stack, front)`
@@ -131,12 +129,12 @@ Just like `f.hardest()` except this one returns the easiest card (or cards if yo
 Given some sort of `data` (which is not in the flashcardz format) and the type of data (`type`), this will the data in the Flashcardz format. Currently, there are only 3 types accepted. One is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
 
 ```js
-var exampleTabNewline = 'front of card' + '\t' + 'back of card'
-	+ '\n' + front of a different card' + '\t' + 'back of this card'
-	+ '\n' + this card has been' + '\t' + 'gotten wrong 4 times and right 2 times' + '\t' + '4' + '\t' + '2'
+var exampleTabNewline = 'front of card' + '\t' + 'back of card' +
+	'\n' + 'front of a different card' + '\t' + 'back of this card' +
+	'\n' + '' + '\t' + 'the front of this card will be "unspecified"'
 
 f.convert(exampleTabNewline, 'tab/newline') // returns something like:
-// [{front: 'front of card', back: 'back of card', right: 0, wrong: 0}, ...]
+// [{front: 'front of card', back: 'back of card', history: []}, ...]
 ```
 
 You can also provide `f.convert` with streams as data instead of strings. In addition, you can also convert "objecty" flashcards:
