@@ -88,7 +88,7 @@ This will find the ID of the first card with a specific front in a stack. Here's
 f.idByFront(cards, 'ostensible') // 0
 ```
 
-This is almost the same as `f.idsByFront(stack, front)[0]` except faster, and if the `front` is not found then this will return -1.
+This is almost the same as `f.idsByFront(stack, front)[0]` except faster, and if the `front` is not found then this will return -1. It is also known as `f.indexOf(stack, front)`
 
 # `f.hardest(stack, count, key)`
 
