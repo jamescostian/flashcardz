@@ -90,6 +90,13 @@ f.idByFront(cards, 'ostensible') // 0
 
 This is almost the same as `f.idsByFront(stack, front)[0]` except faster, and if the `front` is not found then this will return -1. It is also known as `f.indexOf(stack, front)`
 
+Here's an example of how you may actuall use `f.idByFront()` or `f.indexOf()`:
+
+```js
+// Say that "ostensible" was correctly recalled:
+cards = f.gotRight(cards, f.indexOf(cards, 'ostensible'))
+```
+
 # `f.hardest(stack, count, key)`
 
 Given a stack, returns the hardest term. Hardness is calculated by the number of times the user got the card wrong divided by the number of times they got it right plus the number of times they got it wrong. This returns the card. For example:
