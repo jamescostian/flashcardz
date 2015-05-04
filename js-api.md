@@ -156,31 +156,29 @@ f.convert({
 `f.convert` can also be used to normalize flashcards by giving them values they should have. For example:
 
 ```js
-f.convert(var cards = [
+f.convert([
 	{
 		front: 'ostensible',
-		wrong: 5
+		history: [{time: new Date(), recalled: true}]
 	},
 	{
 		front: 'palpable',
 		back: 'able to be touched or felt.'
 	}
 ], 'nice')
-// Returns:
-// [
-//     {
-//         front: 'ostensible',
-//         back: 'unspecified',
-//         right: 0,
-//         wrong: 5
-//     },
-//     {
-//         front: 'palpable',
-//         back: 'able to be touched or felt.',
-//         right: 0,
-//         wrong: 0
-//     }
-// ]
+//	Returns:
+//	[
+//		{
+//			front: 'ostensible',
+//			back: 'unspecified',
+//			history: [{time: new Date(), recalled: true}]
+//		},
+//		{
+//			front: 'palpable',
+//			back: 'able to be touched or felt.',
+//			history: []
+//		}
+//	]
 ```
 
 # `f.quiz(...)`
