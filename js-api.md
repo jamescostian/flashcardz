@@ -133,7 +133,7 @@ Just like `f.hardest()` except this one returns the easiest card (or cards if yo
 
 # `f.convert(data, type)`
 
-Given some sort of `data` (which is not in the flashcardz format) and the type of data (`type`), this will the data in the Flashcardz format. Currently, there are only 3 types accepted. One is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
+Given some sort of `data` (which is not in the flashcardz format) and the type of data (`type`), this will the data in the Flashcardz format. Currently, there are only 4 types accepted. One is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
 
 ```js
 var exampleTabNewline = 'front of card' + '\t' + 'back of card' +
@@ -180,6 +180,10 @@ f.convert([
 //		}
 //	]
 ```
+
+In addition, there's a "single" type, which is just like the "nice" type, except "single" is for normalizing a single card.
+
+If you do not specify a type, either "nice" or "single" will be assumed based on whether `data` is an array or not (if `data` is an array, it is assumed to be a stack and "nice" is used - otherwise it's assumed to be a card and "single" is used).
 
 # `f.quiz(...)`
 
