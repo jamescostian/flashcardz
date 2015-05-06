@@ -153,7 +153,7 @@ f.convert({
 }, 'objecty') // puts those^ flashcards into the Flashcardz format
 ```
 
-`f.convert` can also be used to normalize flashcards by giving them values they should have. For example:
+`f.convert` can also be used to normalize flashcards by giving them values they should have - just use the type "nice". For example:
 
 ```js
 f.convert([
@@ -187,13 +187,13 @@ If you do not specify a type, either "nice" or "single" will be assumed based on
 
 # `f.quiz(...)`
 
-`f.quiz()` returns a promise for the new state after the quiz, it's really up to you to decide how to implement a lot of its details. You can provide a `quizzer` function - an asynchronous function that actually quizzes the user on 1 card and promises to return that card's new state (which may have it's `wrong` or `right` key increased, or even have a new, custom key). You can also provide a function that picks which card the user will be quizzed over - `picker` - and synchronously returns the ID of the card picked in the stack.
+`f.quiz()` returns a promise for the new state after the quiz, it's really up to you to decide how to implement a lot of its details. You can provide a `quizzer` function - an asynchronous function that actually quizzes the user on 1 card and promises to return that card's new state (which may have it's `history` changed, or even have new, custom keys). You can also provide a function that picks which card the user will be quizzed over - `picker` - and (synchronously) returns the ID of the card picked in the stack.
 
 Here are all of the different signatures that `f.quiz` supports:
 
 `f.quiz(card, quizzer)` returns `quizzer(card)`. Basically, `f.quiz(card, quizzer)` is for getting quizzed over 1 card.
 
-`f.quiz(stack, quizzer, picker)` puts `stack` through `picker` (i.e. `picker(stack)`), which should pick one card to be quizzed over, and then that card should be put through `quizzer`. Once `quizzer`'s promise is resolved, the card should be updated to whatever `quizzer`'s promise resolved to. In other words, `f.quiz(stack, quizzer, picker)` returns a promise for the new state of the stack after the user has been quizzed over one card.
+`f.quiz(stack, quizzer, picker)` puts `stack` through `picker` (i.e. `picker(stack)`), which should pick one card to be quizzed over, and then that card is put through `quizzer`. Once `quizzer`'s promise is resolved, the card should be updated to whatever `quizzer`'s promise resolved to. In other words, `f.quiz(stack, quizzer, picker)` returns a promise for the new state of the stack after the user has been quizzed over one card.
 
 Flashcardz comes with a quizzer: `f.cliQuizzer`. This quizzer will quiz the user from their terminal. Here are some examples of how to use it:
 
