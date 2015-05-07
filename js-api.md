@@ -202,9 +202,9 @@ f.quiz(cards[0], f.cliQuizzer) // get quizzed over the first card
 f.quiz(cards[0], f.cliQuizzer({show: 'back', answer: 'front'})) // see the back of the card, guess the front
 ```
 
-Flashcardz also comes with 4 pickers:
+Flashcardz also comes with 5 pickers:
 
-+ `evenHardish` - the default, which is like a combination of hard and even
++ `smart` - the default, and the best (more details in a later section)
 + `hard` - show the hardest cards first
 + `easy` - show the easiest cards first
 + `even` - try to make every card shown the same number of times
@@ -214,6 +214,17 @@ Here's an example of how to get quizzed over a random card:
 
 ```js
 f.quiz(cards, f.cliQuizzer, f.pick.random)
+```
+
+# `f.pick.smart(options)`
+
+Given an object with options, returns a smart picker function for use with `f.quiz()`. The only option currently supported is acceptance, which defaults to 2. The value of acceptance is the number of times the person is supposed to correctly recall a card sequentially. So, if the acceptance is at 2, the picker will be biased to choose cards that not even been seen two times or that were not correctly recalled according to their 2 most recent events in their `history`. In addition, assuming that the acceptance is 2, cards that were recalled correctly according to one or two of their most recent event in their `history` will be avoided - the picker will specifically try to avoid showing you them, because you've already gotten them right twice.
+
+Here's an example of how to use it:
+
+```js
+// The picker will try to get you to get a card right 9 times in a row
+f.quiz(cards, f.cliQuizzer, f.pick.smart({acceptance: 9}))
 ```
 
 # `f.copy(array)`
