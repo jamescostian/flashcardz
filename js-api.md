@@ -229,4 +229,4 @@ f.quiz(cards, f.cliQuizzer, f.pick.smart({acceptance: 9}))
 
 # `f.copy(array)`
 
-A very general function for copying arrays. It works for copying stacks of flashcards, and is used internally, but it's still a very general function.
+A very general function for copying arrays. But be warned, it will mess up `Date` objects like the ones in the `history` of each card. So if you want to copy a stack or a card, use `f.convert()` instead!
