@@ -8,10 +8,10 @@ All notable changes to this project will be documented in this file. This projec
 - `f.quiz()` takes a whole stack and returns a promise that resolves to the new stack after the quiz ends
 - `f.easiest()`, `f.hardest()`, `f.gotWrong()`, and `f.gotRight()` no longer accept stack names, only stack arrays
 - `f.idByFront()` and `f.idsByFront()` take stack arrays instead of stack names
-- `f.import()` became `f.convert()` and no long
+- `f.import()` became `f.convert()`, which returns a stack-based representation of whatever data it gets
 - Made most binary files accept data from STDIN
 - Update README.md to match API and CLI changes
-- Update js-api.md to match API changes
+- Update js-api.md and cli.md to match API and CLI changes
 - `flash import` removed in favor of `flash convert`
 
 ### Removed
