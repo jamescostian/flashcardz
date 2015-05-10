@@ -195,11 +195,11 @@ Here are all of the different signatures that `f.quiz` supports:
 
 `f.quiz(stack, quizzer, picker)` puts `stack` through `picker` (i.e. `picker(stack)`), which should pick one card to be quizzed over, and then that card is put through `quizzer`. Once `quizzer`'s promise is resolved, the card should be updated to whatever `quizzer`'s promise resolved to. In other words, `f.quiz(stack, quizzer, picker)` returns a promise for the new state of the stack after the user has been quizzed over one card.
 
-Flashcardz comes with a quizzer: `f.cliQuizzer`. This quizzer will quiz the user from their terminal. Here are some examples of how to use it:
+Flashcardz comes with a quizzer which you can access with `require('flashcardz/cli-quizzer')`. This quizzer will quiz the user from their terminal. Here are some examples of how to use it:
 
 ```js
-f.quiz(cards[0], f.cliQuizzer) // get quizzed over the first card
-f.quiz(cards[0], f.cliQuizzer({show: 'back', answer: 'front'})) // see the back of the card, guess the front
+f.quiz(cards[0], require('flashcardz/cli-quizzer')) // get quizzed over the first card
+f.quiz(cards[0], require('flashcardz/cli-quizzer')({show: 'back', answer: 'front'})) // see the back of the card, guess the front
 ```
 
 Flashcardz also comes with 5 pickers:
@@ -213,7 +213,7 @@ Flashcardz also comes with 5 pickers:
 Here's an example of how to get quizzed over a random card:
 
 ```js
-f.quiz(cards, f.cliQuizzer, f.pick.random)
+f.quiz(cards, require('flashcardz/cli-quizzer'), f.pick.random)
 ```
 
 # `f.pick.smart(options)`
@@ -224,7 +224,7 @@ Here's an example of how to use it:
 
 ```js
 // The picker will try to get you to get a card right 9 times in a row
-f.quiz(cards, f.cliQuizzer, f.pick.smart({acceptance: 9}))
+f.quiz(cards, require('flashcardz/cli-quizzer'), f.pick.smart({acceptance: 9}))
 ```
 
 # `f.copy(array)`

@@ -65,7 +65,7 @@ var myCards = f.convert({
 }, 'objecty')
 
 // Get quized on the terminal over 1 card in that stack of flashcards
-var myCardsAfterQuiz = flashcardz.quiz(myCards, flashcardz.cliQuizzer, flashcardz.pick.random)
+var myCardsAfterQuiz = flashcardz.quiz(myCards, require('flashcardz/cli-quizzer'), flashcardz.pick.random)
 
 // Get the term that you struggled with most from quizzes
 var hardestCard = flashcardz.hardest(myCardsAfterQuiz)
