@@ -1,12 +1,8 @@
 var util = require('util')
-var gotWrong = require('../stats/got-wrong.js')
-var gotRight = require('../stats/got-right.js')
+var gotWrong = require('./lib/stats/got-wrong.js')
+var gotRight = require('./lib/stats/got-right.js')
+var checkAnswer = require('./lib/quiz/check-answer.js')
 var inquirer = require('inquirer')
-// Polyfill promises
-/* istanbul ignore next */
-if (typeof Promise === 'undefined') {
-	var Promise = require('bluebird')
-}
 
 // Clear the screen
 var clear = function () {
@@ -35,8 +31,8 @@ var cliQuizzer = function (options) {
 			// First, figure out showThis, x, and y
 			var showThis // This is shown to the user as a prompt
 
-			// If the user gets the card wrong and options.showAnswer is true, then cliQuizzer will print:
-			//     Incorrect! "x" is "y"
+			// If options.showAnswer is true, then cliQuizzer may print:
+			//     Correct! "x" matches "y"
 			// Where "y" is the options.answer and "x" is the opposite
 			var x
 			var y = card[options.answer]
@@ -59,20 +55,25 @@ var cliQuizzer = function (options) {
 			// Now actually quiz the user
 			inquirer.prompt({
 				type: 'input',
-				name: 'question1',
+				name: 'q',
 				message: showThis
 			}, function (answer) {
 				clear()
-				if (card[options.answer] === answer.question1) {
-					console.log('Correct!\n')
+				if (checkAnswer(card[options.answer], answer.q)) {
+					if (options.showAnswer) {
+						console.log('\x1b[32;1mCorrect\x1b[0m! "' + x + '" matches "' + y + '"')
+					}
+					else {
+						console.log('\x1b[32;1mCorrect\x1b[0m!')
+					}
 					resolve(gotRight(card))
 				}
 				else {
 					if (options.showAnswer) {
-						console.log('Incorrect! "' + x + '" is "' + y + '"\n')
+						console.log('\x1b[31;1mIncorrect\x1b[0m! "' + x + '" matches "' + y + '", not "' + answer.q + '"')
 					}
 					else {
-						console.log('Incorrect!\n')
+						console.log('\x1b[31;1mIncorrect\x1b[0m!')
 					}
 					resolve(gotWrong(card))
 				}
