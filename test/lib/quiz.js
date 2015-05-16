@@ -7,9 +7,11 @@ process.stdout.isTTY = false
 var f = require('../../lib/module.js')
 var copy = f.copy
 var quiz = f.quiz
-var quizzer = f.cliQuizzer
+var quizzer = require('../../cli-quizzer.js')
 var picker = f.pick.random
 var mockIO = require('./mock-stdin-stdout.js')
+var makeHistory = require('../make-history.js')
+var nullifyTimes = require('../nullify-times.js')
 
 var input = [
 	{
@@ -33,7 +35,7 @@ var input = [
 ]
 
 test('quiz', function (t) {
-        t.test('* simple abilities', function (t) {
+	t.test('* simple abilities', function (t) {
 		t.plan(1)
 
 		// Without a picker function, quiz should be like calling the quizzer function directly on the data
@@ -62,9 +64,9 @@ test('quiz', function (t) {
 		mockIO.write(input[id].back + '\n')
 		mockIO.stop()
 		outputPromise.then(function (quizOutput) {
-			var copyOfInputs = copy(input)
-			copyOfInputs[id].right += 1
-			t.deepEqual(quizOutput, copyOfInputs, 'the quiz should mark some things right')
+			var copyOfInputs = f.convert(input, 'nice')
+			copyOfInputs[id].history = makeHistory(1, 0)
+			t.deepEqual(nullifyTimes(quizOutput), nullifyTimes(copyOfInputs), 'the quiz should mark some things right')
 		})
 	})
 
@@ -87,9 +89,9 @@ test('quiz', function (t) {
 		mockIO.write('Wrong answer\n')
 		mockIO.stop()
 		outputPromise.then(function (quizOutput) {
-			var copyOfInputs = copy(input)
-			copyOfInputs[id].wrong += 1
-			t.deepEqual(copyOfInputs, quizOutput, 'the quiz should mark some things wrong')
+			var copyOfInputs = f.convert(input, 'nice')
+			copyOfInputs[id].history = makeHistory(0, 1)
+			t.deepEqual(nullifyTimes(copyOfInputs), nullifyTimes(quizOutput), 'the quiz should mark some things wrong')
 		})
 	})
 })
