@@ -5,27 +5,28 @@ var easiest = require('../../lib/stats/easiest.js')
 var hardest = require('../../lib/stats/hardest.js')
 var sort = require('../../lib/stats/sort.js')
 var pick = require('../../lib/stats/pick.js')
+var rightWrong = require('../../lib/stats/right-wrong.js')
 var copy = require('../../lib/copy.js')
+var convert = require('../../lib/convert')
+var makeHistory = require('../make-history.js')
+var nullifyTimes = require('../nullify-times.js')
 
 test('stats', function (t) {
 	var input = [
 		{
 			front: 'ostensible',
 			back: 'stated or appearing to be true, but not necessarily so.',
-			right: 5,
-			wrong: 1
+			history: makeHistory(5, 1)
 		},
 		{
 			front: 'palpable',
 			back: 'able to be touched or felt.',
-			right: 9,
-			wrong: 6
+			history: makeHistory(9, 6)
 		},
 		{
 			front: 'diaphanous',
 			back: '(especially of fabric) light, delicate, and translucent.',
-			right: 7,
-			wrong: 2
+			history: makeHistory(7, 2)
 		}
 	]
 	// expected is the expected output for ALL OF THE SORTING ALGORITHMS.
@@ -34,32 +35,41 @@ test('stats', function (t) {
 		{// hardness = 1/6
 			front: 'ostensible',
 			back: 'stated or appearing to be true, but not necessarily so.',
-			right: 5,
-			wrong: 1
+			history: makeHistory(5, 1)
 		},
 		{// hardness = 2/9
 			front: 'diaphanous',
 			back: '(especially of fabric) light, delicate, and translucent.',
-			right: 7,
-			wrong: 2
+			history: makeHistory(7, 2)
 		},
 		{// hardness = 6/15
 			front: 'palpable',
 			back: 'able to be touched or felt.',
-			right: 9,
-			wrong: 6
+			history: makeHistory(9, 6)
 		}
 	]
 
 	t.test('* sort', function (t) {
-		var actual = copy(input).sort(sort.missesAscending)
-		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card wrong')
-		actual = copy(input).sort(sort.hitsAscending)
-		t.deepEqual(actual, expected, 'should sort based on how many times someone got a card right')
-		actual = copy(input).sort(sort.hardnessAscending)
-		t.deepEqual(actual, expected, 'should sort based on "hardness" (wrong/(wrong+right))')
-		actual = copy(input).sort(sort.timesSeenAscending)
-		t.deepEqual(actual, expected, 'should sort based on times seen')
+		var actual = convert(input, 'nice').sort(sort.missesAscending)
+		t.deepEqual(nullifyTimes(actual), nullifyTimes(expected), 'should sort based on how many times someone got a card wrong')
+		actual = convert(input, 'nice').sort(sort.hitsAscending)
+		t.deepEqual(nullifyTimes(actual), nullifyTimes(expected), 'should sort based on how many times someone got a card right')
+		actual = convert(input, 'nice').sort(sort.hardnessAscending)
+		t.deepEqual(nullifyTimes(actual), nullifyTimes(expected), 'should sort based on "hardness" (wrong/(wrong+right))')
+		actual = convert(input, 'nice').sort(sort.timesSeenAscending)
+		t.deepEqual(nullifyTimes(actual), nullifyTimes(expected), 'should sort based on times seen')
+
+		input[0].history = makeHistory(0, 0)
+		input[1].history = makeHistory(0, 0)
+		expected[0].history = makeHistory(0, 0)
+		expected[2].history = makeHistory(0, 0)
+		actual = convert(input, 'nice').sort(sort.hardnessAscending)
+		t.deepEqual(nullifyTimes(actual[2]), nullifyTimes(expected[2]), 'should sort based on "hardness" (wrong/(wrong+right))')
+		input[0].history = makeHistory(5, 1)
+		input[1].history = makeHistory(9, 6)
+		expected[0].history = makeHistory(5, 1)
+		expected[2].history = makeHistory(9, 6)
+
 		t.end()
 	})
 	t.test('* pick', function (t) {
@@ -67,42 +77,50 @@ test('stats', function (t) {
 
 		// For random and shuffle (they're the same), test whether the returned value exists in the stack
 		var actual = pick.random(input)
-		t.ok(actual < input.length && actual >= 0)
+		t.ok(actual < input.length && actual >= 0, 'random should pick in bounds')
 		actual = pick.shuffle(input)
-		t.ok(actual < input.length && actual >= 0)
+		t.ok(actual < input.length && actual >= 0, 'random should still pick in bounds')
 
 		actual = pick.even(input)
-		t.equal(actual, 0)
+		t.equal(actual, 0, 'even should lead to even distribution')
 		actual = pick.easy(input)
-		t.equal(actual, 0)
+		t.equal(actual, 0, 'easy should pick the easiest card')
 		actual = pick.hard(input)
-		t.equal(actual, 1)
+		t.equal(actual, 1, 'hard should pick the hardest card')
 	})
 	t.test('* hardest', function (t) {
-		t.deepEqual(hardest(input), expected[2], 'should work even without being given all of the arguments it accepts')
-		t.deepEqual(hardest(input, 1), expected[2], 'should not return an array if count = 1')
-		t.deepEqual(hardest(input, 2), [expected[2], expected[1]], 'should pay attention to the count argument')
+		t.deepEqual(nullifyTimes(hardest(input)), nullifyTimes(expected[2]), 'should work even without being given all of the arguments it accepts')
+		t.deepEqual(nullifyTimes(hardest(input, 1)), nullifyTimes(expected[2]), 'should not return an array if count = 1')
+		t.deepEqual(nullifyTimes(hardest(input, 2)), nullifyTimes([expected[2], expected[1]]), 'should pay attention to the count argument')
 		t.deepEqual(hardest(input, 'front'), expected[2].front, 'should allow the key argument to take the place of the count argument')
 		t.deepEqual(hardest(input, 2, 'front'), [expected[2].front, expected[1].front], 'should allow both the key and the count to be set')
 		t.end()
 	})
 	t.test('* easiest', function (t) {
-		t.deepEqual(easiest(input), expected[0], 'should work even without being given all of the arguments it accepts')
-		t.deepEqual(easiest(input, 1), expected[0], 'should not return an array if count = 1')
-		t.deepEqual(easiest(input, 2), [expected[0], expected[1]], 'should pay attention to the count argument')
+		t.deepEqual(nullifyTimes(easiest(input)), nullifyTimes(expected[0]), 'should work even without being given all of the arguments it accepts')
+		t.deepEqual(nullifyTimes(easiest(input, 1)), nullifyTimes(expected[0]), 'should not return an array if count = 1')
+		t.deepEqual(nullifyTimes(easiest(input, 2)), nullifyTimes([expected[0], expected[1]]), 'should pay attention to the count argument')
 		t.deepEqual(easiest(input, 'front'), expected[0].front, 'should allow the key argument to take the place of the count argument')
 		t.deepEqual(easiest(input, 2, 'front'), [expected[0].front, expected[1].front], 'should allow both the key and the count to be set')
 		t.end()
 	})
 
-	t.test('* gotWrong and gotRight', function (t) {
+	t.test('* gotWrong, gotRight, and counts', function (t) {
 		var newExpected = gotWrong(expected, 0)
-		expected[0].wrong += 1
-		t.deepEqual(newExpected, expected, 'it was marked wrong')
+		expected[0].history.push({
+			recalled: false,
+			time: new Date()
+		})
+		t.deepEqual(nullifyTimes(newExpected), nullifyTimes(expected), 'it was marked wrong')
+		t.deepEqual(rightWrong(newExpected[0]), {right: 5, wrong: 2})
 
 		newExpected = gotRight(expected, 1)
-		expected[1].right += 1
-		t.deepEqual(newExpected, expected, 'it was marked right')
+		expected[1].history.push({
+			recalled: true,
+			time: new Date()
+		})
+		t.deepEqual(nullifyTimes(newExpected), nullifyTimes(expected), 'it was marked right')
+		t.deepEqual(rightWrong(newExpected[1]), {right: 8, wrong: 2})
 
 		t.end()
 	})
