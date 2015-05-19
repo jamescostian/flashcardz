@@ -29,9 +29,9 @@ var cards = [
 
 Based on the above example, one can gather that there are only 2 cards in that stack
 
-It's also worth noting every method here is idempotent, and none of them will mutate your arrays. For example, if you use `f.gotWrong(cards, 4)`, the card at the index of 4 will not be marked wrong in the array `cards` - instead, a new array will be returned containing all of the old array's cards, and in that new array the card at index 4 will be marked wrong. This allows for functional-style programming.
+It's also worth noting every function here is idempotent, and none of them will mutate your arrays. For example, if you use `f.gotWrong(cards, 4)`, the card at the index of 4 will not be marked wrong in the array `cards` - instead, a new array will be returned containing all of the old array's cards, and in that new array the card at index 4 will be marked wrong. This allows for functional-style programming.
 
-Another note: `f.quiz` is the only method with "side-effects"
+Another note: `f.quiz` is the only function with "side-effects"
 
 ## Walk-Through
 
@@ -50,11 +50,21 @@ var f = require('flashcardz')
 
 Finally, copy and paste the example data set near the top of this documentation.
 
-Feel free to ignore the explanations and just copy and paste the code examples and play around. What follows is the actual documentation.
+Feel free to ignore the explanations and just copy and paste the code examples and play around. Except for the code that starts with `f.quiz()` - once you get to that section, don't copy and paste that code into your REPL because it will take over the terminal
+
+# `f.addHistoryEvent(stack, id, recalled, time)`
+
+This is used to add an event to history. You provide a `stack`, an `id` in the stack, whether the card was correctly `recalled`, and optionally a `time` (when the event happened). If you just want to use one card instead of a stack, that works too. For example, the below code will add an event where card was correctly recalled:
+
+```js
+f.addHistoryEvent(cards[1], true, new Date())
+```
+
+This function does not change the original stack or card you passed to it, it instead returns a new stack or card with the new event.
 
 # `f.gotWrong(stack, id)`
 
-This will return a new array with the number of times a card was gotten wrong incremented. For example:
+Essentially the same as `f.addHistoryEvent()` except it assumes that `recalled` is false and that the `time` is `Date.now()`. For example:
 
 ```js
 cards = f.gotWrong(cards, 0)
@@ -63,12 +73,30 @@ cards[0].history // contains another event where the card was gotten wrong (reca
 
 # `f.gotRight(stack, id)`
 
-This will return a new array with the number of times a card was gotten right incremented. For example:
+Essentially the same as `f.addHistoryEvent()` except it assumes that `recalled` is true and that the `time` is `Date.now()`. For example:
 
 ```js
 cards = f.gotRight(cards, 1)
 cards[1].history // contains another event where the card was gotten right (recalled: true)
 ```
+
+# `f.rightWrong(card)`
+
+Given a card, counts how many times the card was recalled and how many times it wasn't recalled correctly.
+
+```js
+f.rightWrong(cards[0]) // { right: 1, wrong: 1 }
+cards = f.gotRight(cards, 0)
+f.rightWrong(cards[0]) // { right: 2, wrong: 1 }
+```
+
+If you pass this function a stack of cards, it will return how many times any of the cards have been recalled correctly and how many times any of them have been not been recalled correctly. For example:
+
+```js
+f.rightWrong(cards) // {right: 3, wrong: 2}
+```
+
+Or, you can pass in a stack and an id like `f.rightWrong(cards, 0)`, and it'll be treated the same as `f.rightWrong(cards[0])`
 
 # `f.idsByFront(stack, front)`
 
@@ -129,7 +157,7 @@ f.hardest(cards, 2, 'front') // the fronts of the 2 hardest cards
 
 # `f.easiest(stack, count, key)`
 
-Just like `f.hardest()` except this one returns the easiest card (or cards if you provide a `count` > 1, or parts of cards if you provide a `key`).
+Just like `f.hardest()` except this one is for the easiest card(s).
 
 # `f.convert(data, type)`
 
@@ -199,6 +227,9 @@ Flashcardz comes with a quizzer which you can access with `require('flashcardz/c
 
 ```js
 f.quiz(cards[0], require('flashcardz/cli-quizzer')) // get quizzed over the first card
+```
+
+```js
 f.quiz(cards[0], require('flashcardz/cli-quizzer')({show: 'back', answer: 'front'})) // see the back of the card, guess the front
 ```
 
