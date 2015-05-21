@@ -46,7 +46,7 @@ flash hardest newfile
 flash easiest newfile
 ```
 
-If you want to find the top 5 hardest cards and top 3 easiest cards:
+If you want to see, say, the top `$X` cards, you could use `-n $X`. For example, if you want to find the top 5 hardest cards and top 3 easiest cards, you could use this:
 
 ```bash
 flash hardest -n 5 newfile
