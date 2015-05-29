@@ -112,7 +112,8 @@ test('stats', function (t) {
 			time: new Date()
 		})
 		t.deepEqual(nullifyTimes(newExpected), nullifyTimes(expected), 'it was marked wrong')
-		t.deepEqual(rightWrong(newExpected[0]), {right: 5, wrong: 2})
+		t.deepEqual(rightWrong(newExpected[0]), {right: 5, wrong: 2}, 'rightWrong has the correct results')
+		t.deepEqual(rightWrong(newExpected, 0), {right: 5, wrong: 2}, 'rightWrong has the correct results (when given a key separately)')
 
 		newExpected = gotRight(expected, 1)
 		expected[1].history.push({
@@ -120,7 +121,10 @@ test('stats', function (t) {
 			time: new Date()
 		})
 		t.deepEqual(nullifyTimes(newExpected), nullifyTimes(expected), 'it was marked right')
-		t.deepEqual(rightWrong(newExpected[1]), {right: 8, wrong: 2})
+		t.deepEqual(rightWrong(newExpected[1]), {right: 8, wrong: 2}, 'rightWrong has the correct results')
+		t.deepEqual(rightWrong(newExpected, 1), {right: 8, wrong: 2}, 'rightWrong has the correct results (when given a key separately)')
+
+		t.deepEqual(rightWrong(newExpected), {right: 22, wrong: 10}, 'rightWrong works if it is passed an entire stack')
 
 		t.end()
 	})
