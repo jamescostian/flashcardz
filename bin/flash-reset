@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+var stackBuffer = ''
+process.stdin.setEncoding('utf8')
+process.stdin.on('data', function (data) {
+	stackBuffer += data
+})
+
+var f = require('../lib/module.js')
+var program = require('commander')
+var fs = require('fs')
+
+program
+	.version(require('../package.json').version)
+	.description('Given a file (or JSON from STDIN), prints the file without any history')
+	.usage('[options] <file>')
+	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+	.parse(process.argv)
+
+var spaces
+// Allow users to get tab-indented JSON instead of space-indented JSON
+if (program.spaces === '\t' || program.spaces === '\\t') {
+	spaces = '\t'
+}
+else {
+	spaces = parseInt(program.spaces)
+}
+
+var removeHistory = function (card) {
+	card.history = []
+	return card
+}
+
+if (program.args.length === 1) {
+	var stack = JSON.parse(fs.readFileSync(program.args[0]))
+	console.log(JSON.stringify(stack.map(removeHistory), null, spaces))
+	process.exit()
+}
+else {
+	process.stdin.on('end', function () {
+		var stack = JSON.parse(stackBuffer)
+		console.log(JSON.stringify(stack.map(removeHistory), null, spaces))
+		process.exit()
+	})
+}

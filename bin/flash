@@ -8,6 +8,7 @@ program
 	.command('combine <file> [morefiles...]', 'combine stacks of cards')
 	.command('dedupe <file>', 'remove duplicate cards')
 	.command('convert <file> <format>', 'convert to Flashcardz format (JSON)')
+	.command('reset <file>', 'reset stack to have no history (JSON)')
 	.command('hardest <file>', 'see the hardest card in a stack (JSON)')
 	.command('easiest <file>', 'see the easiest card in a stack (JSON)')
 	.parse(process.argv)
