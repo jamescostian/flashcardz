@@ -12,11 +12,13 @@ program
 	.usage('[options] <name>')
 	.option('-s, --show [front/back/both]', 'Which side to show [front]', 'front')
 	.option('-a, --answer [front/back]', 'Which side is the answer [back]', 'back')
+	.option('-c, --acceptance <int>', 'How sequential times you want to get it right', '2')
 	.parse(process.argv)
 
 if (program.args.length < 1) {
 	throw new Error('You must provide a file name!')
 }
 else {
+	program.acceptance = parseInt(program.acceptance)
 	quizzer(program.args[0], program)
 }
