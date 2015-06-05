@@ -37,6 +37,16 @@ flash quiz newfile
 
 Note: `quiz` does not accept things from STDIN - you must provide a file name so that the file can be saved after your quiz
 
+`flash quiz` will show you the front of the card and ask you to type in what's on the back of the card by default. If you would like to change that behavior, you can use `-a front` to make the answer be the front of the card (i.e. you have to type in what's on the front of the card), and/or you can use `-s back` to be shown what's on the back of the card. If you want it to be really easy, you can use `-s both` to see both the front and the back of each card.
+
+`flash quiz` assumes that you want to get every card right 2 times in a row. If you want to get every card right 5 times in a row, for example, you can use `-c 5`.
+
+Here's an example of how to get quizzed over a stack of cards where Flashcardz shows you the back of the card, asks you to type in the front of the card, and tries to make you get each card right 3 times in a row:
+
+```bash
+flash quiz -s back -a front -c 3 newfile
+```
+
 # Hardest and Easiest
 
 Want to know which cards you struggle with the most and which ones you really know? Here's how you can find the #1 hardest and #1 easiest cards:
