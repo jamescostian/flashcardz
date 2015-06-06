@@ -95,6 +95,20 @@ flash quiz perf
 
 The way the dedupe algorithm decides whether or not something is a duplicate, is it checks out whether the fronts and backs of 2 cards are the same.
 
+# Remove History
+
+If you don't like the history of the cards in your stack, you can remove all of the events in all of the cards in a stack with `flash reset` like so:
+
+```bash
+flash reset perf > no-history
+```
+
+Or you can pipe stuff to `flash reset` like so:
+
+```bash
+flash dedupe combined-stack | flash reset > no_dupes_no_history
+```
+
 # Full example
 
 Assuming I have a bunch of files which are exports from Quizlet, and they're all in a directory - with nothing else in that directory - here's something I could do:
