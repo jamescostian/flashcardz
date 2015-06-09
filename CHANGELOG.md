@@ -13,8 +13,11 @@ All notable changes to this project will be documented in this file. This projec
 - Update README.md to match API and CLI changes
 - Update js-api.md and cli.md to match API and CLI changes
 - `flash import` removed in favor of `flash convert`
+- New flashcardz format - instead of having a `right` and `wrong` key, a `history` key is used instead. The `history` is an array of objects, where each object represents a time that the user attempted to respond to seeing a flashcard. Each event has a `time` and a boolean called `recalled` - if the user got it right, `recalled` is set to `true`, otherwise it is `false`
+- More web-friendly! You can `require('flashcardz')` with [Browserify](http://browserify.org/) and it'll work just fine, and it won't use any dependencies
 
 ### Removed
+- Support for Node v0.10 and v0.11 - use v0.12 or [io.js](https://iojs.org) instead
 - Everything that touched the filesystem or was OOP-like
 - `extend-config`
 - `f.insertStack()`
@@ -40,12 +43,18 @@ All notable changes to this project will be documented in this file. This projec
 
 
 ### Added
+- Support for Node v0.12
+- `f.pick.smart()` - a new way to intelligently pick a card
+- `require('flashcardz/cli-quizzer')` - now Flashcardz comes with an independent quizzer for use on a terminal
 - `f.copy()` - get a copy of an array
+- `f.rightWrong()` - how many times has a card/stack been gotten right/wrong?
+- `f.addHistoryEvent()` - add an event to the history of a card
 - `f.dedupe()` - remove duplicate cards from a stack
-- `f.convert()` now also accepts types "objecty" and "nice" - more info [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md#fconvertdata-type)
+- `f.convert()` now also accepts types "objecty", "nice", and "single" - more info [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md#fconvertdata-type)
 - More tests - it's Flashcardz's goal to always have 100% code coverage
 - `flash combine` - for combining multiple Flashcardz files
 - `flash dedupe` - remove duplicate terms
+- `flash reset` - reset cards by removing their history
 
 ## v0.1.0 - 2015-02-13
 This was a preview release
