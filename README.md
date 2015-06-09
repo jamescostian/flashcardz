@@ -1,7 +1,5 @@
 # Flashcardz
 
-## WARNING: this project is far from ready
-
 [![Build Status](https://img.shields.io/travis/jamescostian/flashcardz.svg?style=flat)](https://travis-ci.org/jamescostian/flashcardz)
 [![Coverage Status](https://img.shields.io/coveralls/jamescostian/flashcardz.svg?style=flat)](https://coveralls.io/r/jamescostian/flashcardz?branch=master)
 [![Dependency Status](https://img.shields.io/gemnasium/jamescostian/flashcardz.svg?style=flat)](https://gemnasium.com/jamescostian/flashcardz)
