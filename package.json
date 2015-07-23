@@ -17,8 +17,8 @@
 	"scripts": {
 		"lint": "jshint package.json lib test",
 		"pretest": "npm run lint",
-		"test": "faucet test/start.js",
-		"cov": "istanbul cover -x 'cli-quizzer.js' tape test/start.js",
+		"test": "node test/start.js | faucet",
+		"cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
 		"travis": "npm run lint && npm run cov"
 	},
 	"bin": {
