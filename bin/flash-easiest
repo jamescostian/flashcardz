@@ -2,7 +2,7 @@
 var stackBuffer = ''
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function (data) {
-	stackBuffer += data
+  stackBuffer += data
 })
 
 var f = require('../lib/module.js')
@@ -10,41 +10,39 @@ var program = require('commander')
 var fs = require('fs')
 
 program
-	.version(require('../package.json').version)
-	.description('Given a file (or JSON from STDIN), prints the easiest card (or easiest cards with -n)')
-	.usage('[options] <file>')
-	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
-	.option('-n, --count [number]', 'Number of cards to show [1]', '1')
-	.parse(process.argv)
+  .version(require('../package.json').version)
+  .description('Given a file (or JSON from STDIN), prints the easiest card (or easiest cards with -n)')
+  .usage('[options] <file>')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .option('-n, --count [number]', 'Number of cards to show [1]', '1')
+  .parse(process.argv)
 
 var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
 if (program.spaces === '\t' || program.spaces === '\\t') {
-	spaces = '\t'
-}
-else {
-	spaces = parseInt(program.spaces)
+  spaces = '\t'
+} else {
+  spaces = parseInt(program.spaces, 10)
 }
 
 var count = parseInt(program.count)
 
 if (program.args.length === 1) {
-	var stack = JSON.parse(fs.readFileSync(program.args[0]))
-	if (count === -1) {
-		count = stack.length
-	}
-	var easiest = f.easiest(stack, count)
-	console.log(JSON.stringify(easiest, null, spaces))
-	process.exit()
-}
-else {
-	process.stdin.on('end', function () {
-		var stack = JSON.parse(stackBuffer)
-		if (count === -1) {
-			count = stack.length
-		}
-		var easiest = f.easiest(stack, count)
-		console.log(JSON.stringify(easiest, null, spaces))
-		process.exit()
-	})
+  var stack = JSON.parse(fs.readFileSync(program.args[0]))
+  if (count === -1) {
+    count = stack.length
+  }
+  var easiest = f.easiest(stack, count)
+  console.log(JSON.stringify(easiest, null, spaces))
+  process.exit()
+} else {
+  process.stdin.on('end', function () {
+    var stack = JSON.parse(stackBuffer)
+    if (count === -1) {
+      count = stack.length
+    }
+    var easiest = f.easiest(stack, count)
+    console.log(JSON.stringify(easiest, null, spaces))
+    process.exit()
+  })
 }

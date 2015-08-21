@@ -2,7 +2,7 @@
 var stackBuffer = ''
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function (data) {
-	stackBuffer += data
+  stackBuffer += data
 })
 
 var f = require('../lib/module.js')
@@ -10,30 +10,28 @@ var program = require('commander')
 var fs = require('fs')
 
 program
-	.version(require('../package.json').version)
-	.description('Given a file (or JSON from STDIN), prints the stack without any duplicate cards')
-	.usage('[options] <file>')
-	.option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
-	.parse(process.argv)
+  .version(require('../package.json').version)
+  .description('Given a file (or JSON from STDIN), prints the stack without any duplicate cards')
+  .usage('[options] <file>')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .parse(process.argv)
 
 var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
 if (program.spaces === '\t' || program.spaces === '\\t') {
-	spaces = '\t'
-}
-else {
-	spaces = parseInt(program.spaces)
+  spaces = '\t'
+} else {
+  spaces = parseInt(program.spaces, 10)
 }
 
 if (program.args.length === 1) {
-	var stack = JSON.parse(fs.readFileSync(program.args[0]))
-	console.log(JSON.stringify(f.dedupe(stack), null, spaces))
-	process.exit()
-}
-else {
-	process.stdin.on('end', function () {
-		var stack = JSON.parse(stackBuffer)
-		console.log(JSON.stringify(f.dedupe(stack), null, spaces))
-		process.exit()
-	})
+  var stack = JSON.parse(fs.readFileSync(program.args[0]))
+  console.log(JSON.stringify(f.dedupe(stack), null, spaces))
+  process.exit()
+} else {
+  process.stdin.on('end', function () {
+    var stack = JSON.parse(stackBuffer)
+    console.log(JSON.stringify(f.dedupe(stack), null, spaces))
+    process.exit()
+  })
 }
