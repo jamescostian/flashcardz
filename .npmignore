@@ -1,6 +1,0 @@
-coverage
-.editorconfig
-.jshintrc
-test
-.travis.yml
-.istanbul.yml
