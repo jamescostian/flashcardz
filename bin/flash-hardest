@@ -13,7 +13,7 @@ program
   .version(require('../package.json').version)
   .description('Given a file (or JSON from STDIN), prints the hardest card (or hardest cards with -n)')
   .usage('[options] <file>')
-  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .option('-n, --count [number]', 'Number of cards to show [1]', '1')
   .parse(process.argv)
 

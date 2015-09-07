@@ -4,7 +4,7 @@ var stack
 var thePath
 module.exports = function (path, options) {
   var file = fs.readFileSync(path)
-  stack = f.convert(JSON.parse(file), 'nice')
+  stack = f.convert(JSON.parse(file.toString()), 'nice')
   thePath = path
 
   // Clear the screen

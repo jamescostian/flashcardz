@@ -17,6 +17,6 @@ program
 if (program.args.length < 1) {
   throw new Error('You must provide a file name!')
 } else {
-  program.acceptance = parseInt(program.acceptance)
+  program.acceptance = parseInt(program.acceptance, 10)
   quizzer(program.args[0], program)
 }

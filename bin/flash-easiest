@@ -13,7 +13,7 @@ program
   .version(require('../package.json').version)
   .description('Given a file (or JSON from STDIN), prints the easiest card (or easiest cards with -n)')
   .usage('[options] <file>')
-  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .option('-n, --count [number]', 'Number of cards to show [1]', '1')
   .parse(process.argv)
 
@@ -25,7 +25,7 @@ if (program.spaces === '\t' || program.spaces === '\\t') {
   spaces = parseInt(program.spaces, 10)
 }
 
-var count = parseInt(program.count)
+var count = parseInt(program.count, 10)
 
 if (program.args.length === 1) {
   var stack = JSON.parse(fs.readFileSync(program.args[0]))

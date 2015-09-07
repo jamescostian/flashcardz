@@ -12,7 +12,7 @@ program
   .version(require('../package.json').version)
   .description('Given a file (or JSON from STDIN), prints the file without any history')
   .usage('[options] <file>')
-  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .parse(process.argv)
 
 var spaces

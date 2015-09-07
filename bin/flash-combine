@@ -6,7 +6,7 @@ program
   .version(require('../package.json').version)
   .description('Given 1+ file(s), prints a combination of all of their cards')
   .usage('[options] <file> [morefiles...]')
-  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [4]', '4')
+  .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .parse(process.argv)
 
 var spaces
