@@ -1,7 +1,31 @@
-# Change Log
-All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
+  # Change Log
+
+All notable changes to this project will be documented in this file.
+This project adheres to [Semantic Versioning](http://semver.org/).
+
+## [Unreleased][unreleased]
+### Added
+- Code of Conduct
+
+### Changed
+- Switch from special JSHint rules to [standard](https://github.com/feross/standard)
+- Make project files more in line with those from [module-init](https://github.com/ngoldman/module-init)
 
 ## [v0.2.0][0.2.0]
+### Added
+- Support for Node v0.12
+- `f.pick.smart()` - a new way to intelligently pick a card
+- `require('flashcardz/cli-quizzer')` - now Flashcardz comes with an independent quizzer for use on a terminal
+- `f.copy()` - get a copy of an array
+- `f.rightWrong()` - how many times has a card/stack been gotten right/wrong?
+- `f.addHistoryEvent()` - add an event to the history of a card
+- `f.dedupe()` - remove duplicate cards from a stack
+- `f.convert()` now also accepts types "objecty", "nice", and "single" - more info [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md#fconvertdata-type)
+- More tests - it's Flashcardz's goal to always have 100% code coverage
+- `flash combine` - for combining multiple Flashcardz files
+- `flash dedupe` - remove duplicate terms
+- `flash reset` - reset cards by removing their history
+
 ### Changed
 - `require('flashcardz')()` is no longer needed - just do `require('flashcardz')`
 - No more stack names and internal state - pass around the whole stacks
@@ -41,22 +65,8 @@ All notable changes to this project will be documented in this file. This projec
 - `flash mv`
 - `flash cp`
 
-
-### Added
-- Support for Node v0.12
-- `f.pick.smart()` - a new way to intelligently pick a card
-- `require('flashcardz/cli-quizzer')` - now Flashcardz comes with an independent quizzer for use on a terminal
-- `f.copy()` - get a copy of an array
-- `f.rightWrong()` - how many times has a card/stack been gotten right/wrong?
-- `f.addHistoryEvent()` - add an event to the history of a card
-- `f.dedupe()` - remove duplicate cards from a stack
-- `f.convert()` now also accepts types "objecty", "nice", and "single" - more info [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md#fconvertdata-type)
-- More tests - it's Flashcardz's goal to always have 100% code coverage
-- `flash combine` - for combining multiple Flashcardz files
-- `flash dedupe` - remove duplicate terms
-- `flash reset` - reset cards by removing their history
-
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
-[0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
