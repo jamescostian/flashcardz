@@ -111,7 +111,7 @@ flash dedupe combined-stack | flash reset > no_dupes_no_history
 
 # Full example
 
-Assuming I have a bunch of files which are exports from Quizlet, and they're all in a directory - with nothing else in that directory - here's something I could do:
+Assuming you have a bunch of files which are exports from Quizlet, and they're all in a directory - with nothing else in that directory - you can run the following bash:
 
 ```bash
 # Loop through all of the files
