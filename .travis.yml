@@ -1,8 +1,12 @@
 language: node_js
 node_js:
-    - "0.12"
-    - iojs
-notifications:
-    email: false
-script: "npm run travis"
-after_script: "cat ./coverage/lcov.info | coveralls"
+  - '0.12'
+  - 'iojs'
+sudo: false
+cache:
+  directories:
+    - node_modules
+script:
+  - 'npm run travis'
+after_script:
+  - 'cat ./coverage/lcov.info | coveralls'
