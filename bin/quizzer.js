@@ -48,7 +48,9 @@ function startTheQuiz (options) {
       }
     }
     return false
-  }).reduce(function (count) {return count + 1}, 0)
+  }).reduce(function (count) {
+    return count + 1
+  }, 0)
   console.log('There ' + (oops === 1 ? 'is' : 'are') + ' ' + pluralize(oops, 'card') + ' which you have not correctly recalled the last ' + pluralize(options.acceptance, 'time', true) + ' or have seen less than ' + pluralize(options.acceptance, 'time'))
 
   f.quiz(stack, require('../cli-quizzer')(options), f.pick.smart(options)).then(function (newState) {
