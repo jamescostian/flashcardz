@@ -8,7 +8,7 @@
 
 Intelligently quizes you
 
-# Installation
+## Install
 
 Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which is bundled with Node), installing the CLI is as easy as:
 
@@ -22,9 +22,9 @@ To use Flashcardz programatically, use
 npm install --save flashcardz
 ```
 
-# Examples
+## Usage
 
-## CLI
+### CLI
 
 Say you have a file called `myfile` with flashcards (each card has a "front" and a "back" - normally, you see the front first and have to recall what the back is). Let's say `myfile` looks like this:
 
@@ -50,7 +50,7 @@ flash quiz mystack
 
 The CLI has many other commands. If you run `flash help` you can see a list of them and the arguments they take. You can also get help for individual commands with `flash help [command]`, e.g. `flash help convert`
 
-## JS API
+### JS API
 
 ```js
 var f = require('flashcardz')
@@ -70,7 +70,7 @@ var hardestCard = flashcardz.hardest(myCardsAfterQuiz)
 console.log(hardestCard.front + ' is a difficult word.') // ex: 'ostensible is a difficult word.'
 ```
 
-# Documentation
+## Documentation
 
 Documentation for the JS API is [here](https://github.com/jamescostian/flashcardz/tree/master/js-api.md), in `js-api.md`
 
