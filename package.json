@@ -1,43 +1,43 @@
 {
-	"name": "flashcardz",
-	"description": "Intelligently quizes you",
-	"repository": "https://github.com/jamescostian/flashcardz",
-	"version": "0.2.0",
-	"license": "MIT",
-	"contributors": [
-		"James Costian <james@jamescostian.com> (http://jamescostian.com)"
-	],
-	"engines": {
-		"node": "0.12"
-	},
-	"os": [
-		"!win32"
-	],
-	"main": "lib/module.js",
-	"scripts": {
-		"lint": "snazzy",
-		"pretest": "npm run lint",
-		"test": "node test/start.js | faucet",
-		"cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
-		"travis": "npm run lint && npm run cov"
-	},
-	"bin": {
-		"flash": "bin/flash"
-	},
-	"dependencies": {
-		"inquirer": "0.8.x",
-		"update-notifier": "0.5.x",
-		"commander": "2.8.x"
-	},
-	"devDependencies": {
-		"mock-stdin": "0.3.x",
-		"std-mocks": "1.0.x",
-		"jshint": "2.8.x",
-		"coveralls": "2.11.x",
-		"tape": "4.0.x",
-		"faucet": "0.0.1",
-		"standard": "^5",
-		"snazzy": "^2",
-		"istanbul": "0.3.x"
-	}
+  "name": "flashcardz",
+  "description": "Intelligently quizes you",
+  "repository": "https://github.com/jamescostian/flashcardz",
+  "version": "0.2.0",
+  "license": "MIT",
+  "contributors": [
+    "James Costian <james@jamescostian.com> (http://jamescostian.com)"
+  ],
+  "engines": {
+    "node": "0.12"
+  },
+  "os": [
+    "!win32"
+  ],
+  "main": "lib/module.js",
+  "scripts": {
+    "lint": "snazzy",
+    "pretest": "npm run lint",
+    "test": "node test/start.js | faucet",
+    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
+    "travis": "npm run lint && npm run cov"
+  },
+  "bin": {
+    "flash": "bin/flash"
+  },
+  "dependencies": {
+    "inquirer": "0.8.x",
+    "update-notifier": "0.5.x",
+    "commander": "2.8.x"
+  },
+  "devDependencies": {
+    "mock-stdin": "0.3.x",
+    "std-mocks": "1.0.x",
+    "jshint": "2.8.x",
+    "coveralls": "2.11.x",
+    "tape": "4.0.x",
+    "faucet": "0.0.1",
+    "standard": "^5",
+    "snazzy": "^2",
+    "istanbul": "0.3.x"
+  }
 }
