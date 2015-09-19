@@ -1,7 +1,6 @@
 {
   "name": "flashcardz",
   "description": "Intelligently quizes you",
-  "repository": "https://github.com/jamescostian/flashcardz",
   "version": "0.2.0",
   "license": "MIT",
   "contributors": [
@@ -14,6 +13,10 @@
     "!win32"
   ],
   "main": "lib/module.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamescostian/flashcardz.git"
+  },
   "scripts": {
     "lint": "snazzy",
     "pretest": "npm run lint",
