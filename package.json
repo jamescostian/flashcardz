@@ -2,7 +2,6 @@
   "name": "flashcardz",
   "description": "Intelligently quizes you",
   "version": "0.2.0",
-  "license": "MIT",
   "contributors": [
     "James Costian <james@jamescostian.com> (http://jamescostian.com)"
   ],
@@ -12,6 +11,7 @@
   "os": [
     "!win32"
   ],
+  "license": "ISC",
   "main": "lib/module.js",
   "repository": {
     "type": "git",
