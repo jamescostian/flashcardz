@@ -3,9 +3,6 @@
   "description": "Intelligently quizes you",
   "version": "0.2.0",
   "author": "James Costian <james@jamescostian.com>",
-  "engines": {
-    "node": "0.12"
-  },
   "os": [
     "!win32"
   ],
