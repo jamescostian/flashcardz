@@ -6,6 +6,9 @@
   "bin": {
     "flash": "bin/flash"
   },
+  "bugs": {
+    "url": "https://github.com/jamescostian/flashcardz/issues"
+  },
   "license": "ISC",
   "main": "lib/module.js",
   "repository": {
