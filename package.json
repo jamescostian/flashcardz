@@ -23,19 +23,19 @@
     "travis": "npm run lint && npm run cov"
   },
   "dependencies": {
-    "inquirer": "0.8.x",
-    "update-notifier": "0.5.x",
-    "commander": "2.8.x"
+    "inquirer": "^0.8",
+    "update-notifier": "^0.5",
+    "commander": "^2"
   },
   "devDependencies": {
-    "mock-stdin": "0.3.x",
-    "std-mocks": "1.0.x",
-    "jshint": "2.8.x",
-    "coveralls": "2.11.x",
-    "tape": "4.0.x",
-    "faucet": "0.0.1",
+    "mock-stdin": "^0.3",
+    "std-mocks": "^1",
+    "jshint": "^2",
+    "coveralls": "^2",
+    "tape": "^4",
+    "faucet": "^0.0.1",
     "standard": "^5",
     "snazzy": "^2",
-    "istanbul": "0.3.x"
+    "istanbul": "^0.3"
   }
 }
