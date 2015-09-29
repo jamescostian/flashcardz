@@ -9,19 +9,6 @@
   "bugs": {
     "url": "https://github.com/jamescostian/flashcardz/issues"
   },
-  "license": "ISC",
-  "main": "lib/module.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jamescostian/flashcardz.git"
-  },
-  "scripts": {
-    "lint": "snazzy",
-    "pretest": "npm run lint",
-    "test": "node test/start.js | faucet",
-    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
-    "travis": "npm run lint && npm run cov"
-  },
   "dependencies": {
     "inquirer": "^0.8",
     "update-notifier": "^0.5",
@@ -38,4 +25,17 @@
     "snazzy": "^2",
     "istanbul": "^0.3"
   }
+  "license": "ISC",
+  "main": "lib/module.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamescostian/flashcardz.git"
+  },
+  "scripts": {
+    "lint": "snazzy",
+    "pretest": "npm run lint",
+    "test": "node test/start.js | faucet",
+    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
+    "travis": "npm run lint && npm run cov"
+  },
 }
