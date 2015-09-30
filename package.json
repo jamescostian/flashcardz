@@ -26,6 +26,11 @@
     "istanbul": "^0.3"
   }
   "homepage": "https://github.com/jamescostian/flashcardz",
+  "keywords": [
+    "cards",
+    "flashcards",
+    "quiz"
+  ],
   "license": "ISC",
   "main": "lib/module.js",
   "repository": {
