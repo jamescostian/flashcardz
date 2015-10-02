@@ -37,10 +37,11 @@
     "url": "https://github.com/jamescostian/flashcardz.git"
   },
   "scripts": {
+    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
     "lint": "snazzy",
     "pretest": "npm run lint",
-    "test": "node test/start.js | faucet",
-    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
-    "travis": "npm run lint && npm run cov"
-  },
+    "pretravis": "npm run lint",
+    "test": "node test/start.js | tap-spec",
+    "travis": "npm run cov"
+  }
 }
