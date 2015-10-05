@@ -37,7 +37,7 @@ var cliQuizzer = function (options) {
       var y = card[options.answer]
 
       if (options.show === 'both' || options.show === 'all') {
-        showThis = 'Front: "' + card.front + '"\nBack: "' + card.back + '"'
+        showThis = 'Front: "' + card.front + '"\n  Back: "' + card.back + '"'
         if (options.answer === 'front') {
           x = card['back']
         } else {
@@ -52,7 +52,7 @@ var cliQuizzer = function (options) {
       inquirer.prompt({
         type: 'input',
         name: 'q',
-        message: showThis
+        message: showThis + '\n '
       }, function (answer) {
         clear()
         if (checkAnswer(card[options.answer], answer.q)) {

@@ -49,9 +49,9 @@ test('quiz', function (t) {
     mockIO.start()
     var outputPromise = quiz(input, quizzer, picker)
     // Read the prompt that is supposed to be given to the user
-    var prompt = mockIO.read()[0]
-    // Remove the '? ' at the beginning of the prompt and the ' ' at the end of it to get the front of the card
-    var front = prompt.slice(2, -2)
+    var prompt = mockIO.read()[1]
+    // Remove the '? ' at the beginning of the prompt and the '\n  ' at the end of it to get the front of the card
+    var front = prompt.slice(2, -3)
     // Find the ID of the card with that^ front
     var id = false
     for (var i = 0; i < input.length; i += 1) {
@@ -74,9 +74,9 @@ test('quiz', function (t) {
     mockIO.start()
     var outputPromise = quiz(input, quizzer, picker)
     // Read the prompt that is supposed to be given to the user
-    var prompt = mockIO.read()[0]
-    // Remove the '? ' at the beginning of the prompt and the ' ' at the end of it to get the front of the card
-    var front = prompt.slice(2, -2)
+    var prompt = mockIO.read()[1]
+    // Remove the '? ' at the beginning of the prompt and the '\n  ' at the end of it to get the front of the card
+    var front = prompt.slice(2, -3)
     // Find the ID of the card with that^ front
     var id = false
     for (var i = 0; i < input.length; i += 1) {

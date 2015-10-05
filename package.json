@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "commander": "^2",
-    "inquirer": "^0.8",
+    "inquirer": "^0.10",
     "update-notifier": "^0.5"
   },
   "devDependencies": {

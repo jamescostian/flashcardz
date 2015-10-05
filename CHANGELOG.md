@@ -12,6 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Switch from special JSHint rules to [standard](https://github.com/feross/standard)
 - Make project files more in line with those from [module-init](https://github.com/ngoldman/module-init)
 - Switch from MIT to ISC
+- CLI quizzer now indents everything uniformly
+- Misc dep updates
 
 ## [v0.2.0][0.2.0]
 ### Added
