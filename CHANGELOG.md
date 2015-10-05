@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Added
 - Code of Conduct
+- Support for Node 4.x.x
 
 ### Changed
 - Switch from special JSHint rules to [standard](https://github.com/feross/standard)
