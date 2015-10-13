@@ -72,6 +72,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
-[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
+[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...HEAD
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
