@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "commander": "^2",
-    "inquirer": "^0.10",
+    "inquirer": "^0.11",
     "update-notifier": "^0.5"
   },
   "devDependencies": {
     "coveralls": "^2",
-    "istanbul": "^0.3",
+    "istanbul": "^0.4",
     "mock-stdin": "^0.3",
     "snazzy": "^2",
     "standard": "^5",
