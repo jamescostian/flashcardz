@@ -6,7 +6,7 @@ sudo: false
 cache:
   directories:
     - node_modules
-before_script:
+before_install:
   - 'npm upgrade -g npm'
 script:
   - 'npm run travis'
