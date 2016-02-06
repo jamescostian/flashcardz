@@ -70,6 +70,8 @@ var hardestCard = flashcardz.hardest(myCardsAfterQuiz)
 console.log(hardestCard.front + ' is a difficult word.') // ex: 'ostensible is a difficult word.'
 ```
 
+See [Flashcardz-web](https://github.com/jamescostian/flashcardz-web) for an example of a web front-end that uses this API.
+
 ## Documentation
 
 Documentation for the JS API is [here](https://github.com/jamescostian/flashcardz/blob/master/js-api.md), in `js-api.md`
