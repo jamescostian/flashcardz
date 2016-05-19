@@ -18,8 +18,8 @@
     "coveralls": "^2",
     "istanbul": "^0.4",
     "mock-stdin": "^0.3",
-    "snazzy": "^2",
-    "standard": "^5",
+    "snazzy": "^4",
+    "standard": "^7",
     "std-mocks": "^1",
     "tap-spec": "^4",
     "tape": "^4"
