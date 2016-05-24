@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.2.2][0.2.2]
+### Changed
+- Updated deps
+
 ## [v0.2.1][0.2.1]
 ### Added
 - Code of Conduct
@@ -72,6 +76,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
-[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...HEAD
+[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
