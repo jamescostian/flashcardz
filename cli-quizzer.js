@@ -26,51 +26,49 @@ var cliQuizzer = function (options) {
   options.answer = options.answer || 'back'
   // Return a function that will quiz the user
   return function (card) {
-    return new Promise(function (resolve, reject) {
-      // First, figure out showThis, x, and y
-      var showThis // This is shown to the user as a prompt
+    // First, figure out showThis, x, and y
+    var showThis // This is shown to the user as a prompt
 
-      // If options.showAnswer is true, then cliQuizzer may print:
-      //     Correct! "x" matches "y"
-      // Where "y" is the options.answer and "x" is the opposite
-      var x
-      var y = card[options.answer]
+    // If options.showAnswer is true, then cliQuizzer may print:
+    //     Correct! "x" matches "y"
+    // Where "y" is the options.answer and "x" is the opposite
+    var x
+    var y = card[options.answer]
 
-      if (options.show === 'both' || options.show === 'all') {
-        showThis = 'Front: "' + card.front + '"\n  Back: "' + card.back + '"'
-        if (options.answer === 'front') {
-          x = card['back']
-        } else {
-          x = card['front']
-        }
+    if (options.show === 'both' || options.show === 'all') {
+      showThis = 'Front: "' + card.front + '"\n  Back: "' + card.back + '"'
+      if (options.answer === 'front') {
+        x = card['back']
       } else {
-        showThis = card[options.show]
-        x = card[options.show]
+        x = card['front']
       }
+    } else {
+      showThis = card[options.show]
+      x = card[options.show]
+    }
 
-      // Now actually quiz the user
-      inquirer.prompt({
-        type: 'input',
-        name: 'q',
-        message: showThis + '\n '
-      }, function (answer) {
-        clear()
-        if (checkAnswer(card[options.answer], answer.q)) {
-          if (options.showAnswer) {
-            console.log('\x1b[32;1mCorrect\x1b[0m! "' + x + '" matches "' + y + '"')
-          } else {
-            console.log('\x1b[32;1mCorrect\x1b[0m!')
-          }
-          resolve(gotRight(card))
+    // Now actually quiz the user
+    return inquirer.prompt({
+      type: 'input',
+      name: 'q',
+      message: showThis + '\n '
+    }).then(function (answer) {
+      clear()
+      if (checkAnswer(card[options.answer], answer.q)) {
+        if (options.showAnswer) {
+          console.log('\x1b[32;1mCorrect\x1b[0m! "' + x + '" matches "' + y + '"')
         } else {
-          if (options.showAnswer) {
-            console.log('\x1b[31;1mIncorrect\x1b[0m! "' + x + '" matches "' + y + '", not "' + answer.q + '"')
-          } else {
-            console.log('\x1b[31;1mIncorrect\x1b[0m!')
-          }
-          resolve(gotWrong(card))
+          console.log('\x1b[32;1mCorrect\x1b[0m!')
         }
-      })
+        return gotRight(card)
+      } else {
+        if (options.showAnswer) {
+          console.log('\x1b[31;1mIncorrect\x1b[0m! "' + x + '" matches "' + y + '", not "' + answer.q + '"')
+        } else {
+          console.log('\x1b[31;1mIncorrect\x1b[0m!')
+        }
+        return gotWrong(card)
+      }
     })
   }
 }

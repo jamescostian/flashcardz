@@ -3,7 +3,8 @@ var program = require('commander')
 var quizzer = require('./quizzer.js')
 
 var updateNotifier = require('update-notifier')
-updateNotifier({pkg: require('../package.json')}).notify()
+var pkg = require('../package.json')
+updateNotifier({pkg: pkg, name: pkg.name, version: pkg.version}).notify()
 
 program
   .version(require('../package.json').version)
