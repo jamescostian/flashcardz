@@ -12,7 +12,7 @@
   "dependencies": {
     "commander": "^2",
     "inquirer": "^1",
-    "update-notifier": "^0.7"
+    "update-notifier": "^1"
   },
   "devDependencies": {
     "coveralls": "^2",
