@@ -1,7 +1,7 @@
 {
   "name": "flashcardz",
   "description": "Intelligently quizes you",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "James Costian <james@jamescostian.com>",
   "bin": {
     "flash": "bin/flash"

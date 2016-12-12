@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v0.2.3][0.2.3]
+### Changed
+- Updated deps, use NYC instead of Istanbul
+- Use stream-string instead of the repeated, manual implementations of it throughout the files in `bin`
+
 ## [v0.2.2][0.2.2]
 ### Changed
 - Updated deps
@@ -77,6 +82,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This was a preview release
 
 [unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
