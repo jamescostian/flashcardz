@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-  - '0.12'
-  - 'stable'
+  - '7'
 sudo: false
 cache:
   directories:
     - node_modules
-script:
-  - 'npm run travis'
-after_script:
-  - 'cat ./coverage/lcov.info | coveralls'
+after_success: npm run coveralls
+notifications:
+  email: false

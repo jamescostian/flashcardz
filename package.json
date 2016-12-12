@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "commander": "^2",
-    "inquirer": "^1",
+    "inquirer": "^2",
     "update-notifier": "^1"
   },
   "devDependencies": {
     "coveralls": "^2",
     "istanbul": "^0.4",
     "mock-stdin": "^0.3",
-    "snazzy": "^4",
-    "standard": "^7",
+    "nyc": "^10",
+    "snazzy": "^5",
     "std-mocks": "^1",
     "tap-spec": "^4",
     "tape": "^4"
@@ -37,11 +37,24 @@
     "url": "https://github.com/jamescostian/flashcardz.git"
   },
   "scripts": {
-    "cov": "istanbul cover -x \"cli-quizzer.js\" test/start.js",
-    "lint": "snazzy",
-    "pretest": "npm run lint",
-    "pretravis": "npm run lint",
-    "test": "node test/start.js | tap-spec",
-    "travis": "npm run cov"
+    "coveralls": "nyc --reporter=text-lcov node test/start.js | coveralls",
+    "cov": "nyc --reporter=html --reporter=text node test/start.js",
+    "pretest": "snazzy",
+    "test": "node test/start.js | tap-spec"
+  },
+  "nyc": {
+    "lines": 99,
+    "statements": 99,
+    "functions": 99,
+    "branches": 99,
+    "include": [
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "test",
+      "cli-quizzer.js"
+    ],
+    "cache": true,
+    "all": true
   }
 }
