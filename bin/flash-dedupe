@@ -1,9 +1,6 @@
 #!/usr/bin/env node
-var stackBuffer = ''
+const ss = require('stream-string')
 process.stdin.setEncoding('utf8')
-process.stdin.on('data', function (data) {
-  stackBuffer += data
-})
 
 var f = require('../lib/module.js')
 var program = require('commander')
@@ -29,8 +26,8 @@ if (program.args.length === 1) {
   console.log(JSON.stringify(f.dedupe(stack), null, spaces))
   process.exit()
 } else {
-  process.stdin.on('end', function () {
-    var stack = JSON.parse(stackBuffer)
+  ss(process.stdin).then(function (stackStr) {
+    var stack = JSON.parse(stackStr)
     console.log(JSON.stringify(f.dedupe(stack), null, spaces))
     process.exit()
   })

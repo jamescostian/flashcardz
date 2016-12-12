@@ -1,9 +1,6 @@
 #!/usr/bin/env node
-var stackBuffer = ''
+const ss = require('stream-string')
 process.stdin.setEncoding('utf8')
-process.stdin.on('data', function (data) {
-  stackBuffer += data
-})
 
 var f = require('../lib/module.js')
 var program = require('commander')
@@ -28,8 +25,8 @@ if (program.args.length === 0) {
   console.error('You must provide at least one argument - the format - if you want to work with STDIN. Otherwise, provide a file name and a format. You can see the usage with --help')
   process.exit()
 } else if (program.args.length === 1) {
-  process.stdin.on('end', function () {
-    var converted = f.convert(stackBuffer, program.args[0])
+  ss(process.stdin).then(function (stackStr) {
+    var converted = f.convert(stackStr, program.args[0])
     console.log(JSON.stringify(converted, null, spaces))
     process.exit()
   })

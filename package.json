@@ -12,6 +12,7 @@
   "dependencies": {
     "commander": "^2",
     "inquirer": "^2",
+    "stream-string": "^1",
     "update-notifier": "^1"
   },
   "devDependencies": {
@@ -32,16 +33,6 @@
   ],
   "license": "ISC",
   "main": "lib/module.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jamescostian/flashcardz.git"
-  },
-  "scripts": {
-    "coveralls": "nyc --reporter=text-lcov node test/start.js | coveralls",
-    "cov": "nyc --reporter=html --reporter=text node test/start.js",
-    "pretest": "snazzy",
-    "test": "node test/start.js | tap-spec"
-  },
   "nyc": {
     "lines": 99,
     "statements": 99,
@@ -56,5 +47,15 @@
     ],
     "cache": true,
     "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamescostian/flashcardz.git"
+  },
+  "scripts": {
+    "cov": "nyc --reporter=html --reporter=text node test/start.js",
+    "coveralls": "nyc --reporter=text-lcov node test/start.js | coveralls",
+    "pretest": "snazzy",
+    "test": "node test/start.js | tap-spec"
   }
 }
