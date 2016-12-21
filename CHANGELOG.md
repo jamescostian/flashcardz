@@ -7,16 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Use Jest instead of tape + NYC
 
-## [v0.2.3][0.2.3]
+## [v0.2.3][0.2.3] - 2016-12-11
 ### Changed
 - Updated deps, use NYC instead of Istanbul
 - Use stream-string instead of the repeated, manual implementations of it throughout the files in `bin`
 
-## [v0.2.2][0.2.2]
+## [v0.2.2][0.2.2] - 2016-05-23
 ### Changed
 - Updated deps
 
-## [v0.2.1][0.2.1]
+## [v0.2.1][0.2.1] - 2015-10-08
 ### Added
 - Code of Conduct
 - Support for Node 4.x.x
@@ -28,7 +28,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - CLI quizzer now indents everything uniformly
 - Misc dep updates
 
-## [v0.2.0][0.2.0]
+## [v0.2.0][0.2.0] - 2015-06-09
 ### Added
 - Support for Node v0.12
 - `f.pick.smart()` - a new way to intelligently pick a card
@@ -85,7 +85,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
-[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...HEAD
+[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.3...HEAD
 [0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
