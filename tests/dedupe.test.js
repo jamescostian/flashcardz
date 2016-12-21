@@ -1,8 +1,7 @@
-var test = require('tape')
-var dedupe = require('../../lib/dedupe.js')
+const dedupe = require('../lib/dedupe.js')
 
-test('dedupe', function (t) {
-  var hasDupes = [
+it('dedupe', () => {
+  const hasDupes = [
     {
       front: 'x',
       back: 'y',
@@ -18,7 +17,7 @@ test('dedupe', function (t) {
     }
   ]
 
-  var noDupes = [
+  const noDupes = [
     {
       front: 'x',
       back: 'y',
@@ -30,6 +29,5 @@ test('dedupe', function (t) {
     }
   ]
 
-  t.deepEqual(dedupe(hasDupes), noDupes)
-  t.end()
+  expect(dedupe(hasDupes)).toEqual(noDupes)
 })

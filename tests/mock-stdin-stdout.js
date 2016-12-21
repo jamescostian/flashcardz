@@ -1,25 +1,23 @@
-var mockIn = false
-var mockOut = require('std-mocks')
+let mockIn = false
+const mockOut = require('std-mocks')
 
 // Mocks STDIN and STDOUT
-var mock = function () {
+const mock = () => {
   mockIn = require('mock-stdin').stdin()
   mockOut.use()
   mockOut.flush()
   process.stdout.isTTY = false
 }
 // Removes mocks for STDIN and STDOUT
-var unMock = function () {
+const unMock = () => {
   mockIn.restore()
   mockOut.restore()
   process.stdout.isTTY = global.reallyIsTTY
 }
 // Assuming that STDOUT is mocked, this allows you to read STDOUT
-var read = function () {
-  return mockOut.flush().stdout
-}
+const read = () => mockOut.flush().stdout
 // Assuming that STDIN is mocked, this allows you to write to STDIN
-var write = function (data) {
+const write = data => {
   mockIn = mockIn.send(data)
 }
 

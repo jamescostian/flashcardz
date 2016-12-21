@@ -1,10 +1,9 @@
-var test = require('tape')
-var convert = require('../../lib/convert')
-var makeHistory = require('../make-history.js')
-var nullifyTimes = require('../nullify-times.js')
+const convert = require('../lib/convert')
+const makeHistory = require('./make-history.js')
+const nullifyTimes = require('./nullify-times.js')
 
-test('convert', function (t) {
-  var cards = [
+it('convert', () => {
+  const cards = [
     {
       front: 'ostensible',
       back: 'stated or appearing to be true, but not necessarily so.',
@@ -22,15 +21,15 @@ test('convert', function (t) {
     }
   ]
 
-  t.deepEqual(convert({
+  expect(convert({
     'ostensible': 'stated or appearing to be true, but not necessarily so.',
     'palpable': 'able to be touched or felt.',
     'diaphanous': '(especially of fabric) light, delicate, and translucent.'
-  }, 'objecty'), cards, 'objecty works')
+  }, 'objecty')).toEqual(cards)
 
   cards[1].back = 'unspecified'
   cards[2].history = makeHistory(0, 5)
-  t.deepEqual(nullifyTimes(convert([
+  expect(nullifyTimes(convert([
     {
       front: 'ostensible',
       back: 'stated or appearing to be true, but not necessarily so.'
@@ -64,26 +63,24 @@ test('convert', function (t) {
         }
       ]
     }
-  ], 'nice')), nullifyTimes(cards), 'nice works')
+  ], 'nice'))).toEqual(nullifyTimes(cards))
 
   cards[2].history = []
   cards[0].front = 'unspecified'
-  var importString = '\tstated or appearing to be true, but not necessarily so.\n' +
+  const importString = '\tstated or appearing to be true, but not necessarily so.\n' +
     'palpable\t\n' +
     'diaphanous\t(especially of fabric) light, delicate, and translucent.'
-  t.deepEqual(nullifyTimes(convert(importString, 'tab/newline')), nullifyTimes(cards), 'tab/newline works')
-  t.deepEqual(nullifyTimes(convert(importString + '\n', 'tab/newline')), nullifyTimes(cards), 'tab/newline works even with an extra new line')
+  expect(nullifyTimes(convert(importString, 'tab/newline'))).toEqual(nullifyTimes(cards))
+  expect(nullifyTimes(convert(importString + '\n', 'tab/newline'))).toEqual(nullifyTimes(cards))
 
-  t.throws(function () {
-    convert('x', 'not a converter')
-  }, 'throws if the format specified does not exist')
-  t.equal(convert(undefined, 'tab/newline').length, 0, 'returns an empty array if given undefined as data')
+  expect(() => convert('x', 'not a converter')).toThrow()
+  expect(convert(undefined, 'tab/newline').length).toBe(0)
 
-  t.equal(convert([{}])[0].front, 'unspecified', 'should be able to use nice as a default')
+  expect(convert([{}])[0].front).toBe('unspecified')
 
-  t.equal(convert({}).front, 'unspecified', 'should be able to use single as a default')
+  expect(convert({}).front).toBe('unspecified')
 
-  t.equal(convert({
+  expect(convert({
     front: 'IDK',
     back: ':)',
     history: [
@@ -92,10 +89,10 @@ test('convert', function (t) {
         recalled: false
       }
     ]
-  }, 'single').history[0].time.getTime(), 50000, 'should be able to parse integer times')
+  }, 'single').history[0].time.getTime()).toBe(50000)
 
-  var d = new Date()
-  t.equal(convert({
+  const d = new Date()
+  expect(convert({
     front: 'IDK',
     back: ':)',
     history: [
@@ -104,7 +101,5 @@ test('convert', function (t) {
         recalled: false
       }
     ]
-  }, 'single').history[0].time.toString(), d.toString(), 'should be able to parse Date times')
-
-  t.end()
+  }, 'single').history[0].time.toString()).toBe(d.toString())
 })
