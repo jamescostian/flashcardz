@@ -10,7 +10,7 @@ Intelligently quizes you
 
 ## Install
 
-Assuming you have [Node](http://nodejs.org) and [NPM](https://npmjs.org) (which is bundled with Node), installing the CLI is as easy as:
+Assuming you have [Node](http://nodejs.org), installing the CLI is as easy as:
 
 ```bash
 npm install -g flashcardz
