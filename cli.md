@@ -117,15 +117,23 @@ Assuming you have a bunch of files which are exports from Quizlet, and they're a
 # Loop through all of the files
 for file in *
 do
-	# Convert the file to its old name plus ".json"
-	flash convert $file tab/newline > "$(echo $file).json"
-	# Remove the old file
-	rm $file
+  # Convert the file from tab/newline to Flashcardz format, appending ".json" to the file's name
+  flash convert $file tab/newline > "$file.json"
+  # Remove the old file
+  rm $file
 done
 # Combine all of the files left
 flash combine *.json > new
 # Remove duplicate cards
 flash dedupe new > perfect-stack
 # Get quizzed over that new combined + deduped stack
+flash quiz perfect-stack
+```
+
+The same could also be abbreviated (because who types out all of that in their terminal?):
+
+```bash
+for f in *; do flash convert $f tab/newline > "$f.json"; done
+flash combine *.json | flash dedupe > perfect-stack
 flash quiz perfect-stack
 ```
