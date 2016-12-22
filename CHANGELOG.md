@@ -66,7 +66,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 - Support for Node v0.10 and v0.11 - use v0.12 or [io.js](https://iojs.org) instead
-- Everything that touched the filesystem or was OOP-like
+- Everything that was better off being accomplished with other tools, or was OOP-like
 - `extend-config`
 - `f.insertStack()`
 - `f.insertCard()`
@@ -93,7 +93,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This was a preview release
 
 [unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.3...HEAD
-[0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...v0.2.3
+[0.2.3]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jamescostian/flashcardz/compare/v0.1.0...v0.2.0
