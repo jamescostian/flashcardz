@@ -2,9 +2,9 @@
 const ss = require('stream-string')
 process.stdin.setEncoding('utf8')
 
-var f = require('../lib/module.js')
-var program = require('commander')
-var fs = require('fs')
+const f = require('../lib/module.js')
+const program = require('commander')
+const {readFileSync} = require('fs')
 
 program
   .version(require('../package.json').version)
@@ -13,25 +13,20 @@ program
   .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .parse(process.argv)
 
-var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
-if (program.spaces === '\t' || program.spaces === '\\t') {
-  spaces = '\t'
-} else {
-  spaces = parseInt(program.spaces, 10)
-}
+const spaces = program.spaces === '\t' || program.spaces === '\\t' ? spaces = '\t' : parseInt(program.spaces, 10)
 
 if (program.args.length === 0) {
   console.error('You must provide at least one argument - the format - if you want to work with STDIN. Otherwise, provide a file name and a format. You can see the usage with --help')
   process.exit()
 } else if (program.args.length === 1) {
-  ss(process.stdin).then(function (stackStr) {
-    var converted = f.convert(stackStr, program.args[0])
+  ss(process.stdin).then(stackStr => {
+    const converted = f.convert(stackStr, program.args[0])
     console.log(JSON.stringify(converted, null, spaces))
     process.exit()
   })
 } else {
-  var converted = f.convert(fs.readFileSync(program.args[0]), program.args[1])
+  const converted = f.convert(readFileSync(program.args[0]), program.args[1])
   console.log(JSON.stringify(converted, null, spaces))
   process.exit()
 }

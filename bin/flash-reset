@@ -2,8 +2,8 @@
 const ss = require('stream-string')
 process.stdin.setEncoding('utf8')
 
-var program = require('commander')
-var fs = require('fs')
+const program = require('commander')
+const fs = require('fs')
 
 program
   .version(require('../package.json').version)
@@ -12,26 +12,21 @@ program
   .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .parse(process.argv)
 
-var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
-if (program.spaces === '\t' || program.spaces === '\\t') {
-  spaces = '\t'
-} else {
-  spaces = parseInt(program.spaces, 10)
-}
+const spaces = program.spaces === '\t' || program.spaces === '\\t' ? spaces = '\t' : parseInt(program.spaces, 10)
 
-var removeHistory = function (card) {
+const removeHistory = card => {
   card.history = []
   return card
 }
 
 if (program.args.length === 1) {
-  var stack = JSON.parse(fs.readFileSync(program.args[0]))
+  const stack = JSON.parse(fs.readFileSync(program.args[0]))
   console.log(JSON.stringify(stack.map(removeHistory), null, spaces))
   process.exit()
 } else {
-  ss(process.stdin).then(function (stackStr) {
-    var stack = JSON.parse(stackStr)
+  ss(process.stdin).then(stackStr => {
+    const stack = JSON.parse(stackStr)
     console.log(JSON.stringify(stack.map(removeHistory), null, spaces))
     process.exit()
   })

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-var program = require('commander')
-var fs = require('fs')
+const program = require('commander')
+const {readFileSync} = require('fs')
 
 program
   .version(require('../package.json').version)
@@ -9,17 +9,14 @@ program
   .option('-s, --spaces [number]', 'Number of spaces to indent the JSON [2]', '2')
   .parse(process.argv)
 
-var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
-if (program.spaces === '\t' || program.spaces === '\\t') {
-  spaces = '\t'
-} else {
-  spaces = parseInt(program.spaces, 10)
-}
+const spaces = program.spaces === '\t' || program.spaces === '\\t' ? spaces = '\t' : parseInt(program.spaces, 10)
 
-var combined = program.args.reduce(function (finalArray, fileName) {
-  return finalArray.concat(JSON.parse(fs.readFileSync(fileName)))
-}, [])
+const combined = program.args.reduce(
+  (finalArray, fileName) => finalArray.concat(
+    JSON.parse(readFileSync(fileName))
+  ),
+  [])
 
 console.log(JSON.stringify(combined, null, spaces))
 process.exit()

@@ -1,10 +1,6 @@
 #!/usr/bin/env node
-var program = require('commander')
-var quizzer = require('./quizzer.js')
-
-var updateNotifier = require('update-notifier')
-var pkg = require('../package.json')
-updateNotifier({pkg: pkg, name: pkg.name, version: pkg.version}).notify()
+const program = require('commander')
+const quizzer = require('./quizzer.js')
 
 program
   .version(require('../package.json').version)

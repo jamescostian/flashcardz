@@ -2,9 +2,9 @@
 const ss = require('stream-string')
 process.stdin.setEncoding('utf8')
 
-var f = require('../lib/module.js')
-var program = require('commander')
-var fs = require('fs')
+const f = require('../lib/module.js')
+const program = require('commander')
+const {readFileSync} = require('fs')
 
 program
   .version(require('../package.json').version)
@@ -14,31 +14,25 @@ program
   .option('-n, --count [number]', 'Number of cards to show [1]', '1')
   .parse(process.argv)
 
-var spaces
 // Allow users to get tab-indented JSON instead of space-indented JSON
-if (program.spaces === '\t' || program.spaces === '\\t') {
-  spaces = '\t'
-} else {
-  spaces = parseInt(program.spaces, 10)
-}
-
-var count = parseInt(program.count, 10)
+const spaces = program.spaces === '\t' || program.spaces === '\\t' ? spaces = '\t' : parseInt(program.spaces, 10)
+let count = parseInt(program.count, 10)
 
 if (program.args.length === 1) {
-  var stack = JSON.parse(fs.readFileSync(program.args[0]))
+  const stack = JSON.parse(readFileSync(program.args[0]))
   if (count === -1) {
     count = stack.length
   }
-  var easiest = f.easiest(stack, count)
+  const easiest = f.easiest(stack, count)
   console.log(JSON.stringify(easiest, null, spaces))
   process.exit()
 } else {
-  ss(process.stdin).then(function (stackStr) {
-    var stack = JSON.parse(stackStr)
+  ss(process.stdin).then(stackStr => {
+    const stack = JSON.parse(stackStr)
     if (count === -1) {
       count = stack.length
     }
-    var easiest = f.easiest(stack, count)
+    const easiest = f.easiest(stack, count)
     console.log(JSON.stringify(easiest, null, spaces))
     process.exit()
   })
