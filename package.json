@@ -12,7 +12,7 @@
   "dependencies": {
     "commander": "^2",
     "inquirer": "^2",
-    "stream-string": "^1",
+    "stream-string": "^2",
     "update-notifier": "^1"
   },
   "devDependencies": {
