@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/npm/l/flashcardz.svg?style=flat)](https://github.com/jamescostian/flashcardz/blob/master/LICENSE)
 [![NPM Version](https://img.shields.io/npm/v/flashcardz.svg?style=flat)](https://www.npmjs.com/package/flashcardz)
 
-Intelligently quizes you
+Intelligently quizzes you
 
 ## Install
 
