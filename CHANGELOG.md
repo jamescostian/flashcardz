@@ -4,8 +4,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- Support for Node v6 and beyond
+
 ### Changed
 - Use Jest instead of tape + NYC
+
+### Removed
+- Support for versions of Node before v5
 
 ## [v0.2.3][0.2.3] - 2016-12-11
 ### Changed
