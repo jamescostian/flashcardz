@@ -257,7 +257,3 @@ Here's an example of how to use it:
 // The picker will try to get you to get a card right 9 times in a row
 f.quiz(cards, require('flashcardz/cli-quizzer'), f.pick.smart({acceptance: 9}))
 ```
-
-# `f.copy(array)`
-
-A very general function for copying arrays. But be warned, it will mess up `Date` objects like the ones in the `history` of each card. So if you want to copy a stack or a card, use `f.convert()` instead!
