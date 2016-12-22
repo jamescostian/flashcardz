@@ -25,6 +25,7 @@
   "homepage": "https://github.com/jamescostian/flashcardz",
   "jest": {
     "testRegex": "(tests/(.*))\\.test\\.js$",
+    "coverageReporters": ["json", "lcov", "text", "html"],
     "collectCoverageFrom": ["lib/**/*.js"],
     "collectCoverage": true
   },
