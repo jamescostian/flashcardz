@@ -3,27 +3,27 @@
 This document assumes that you're providing flashcards in a specific format. Flashcardz expects all of the flashcards to be in an array, and it expects that all of the flashcards are objects. Each flashcard object is expected to have a `front` and `back`, as well as `history`. `history` is an array of objects, where each object represents a time when a user responded to a quiz. Each of those event objects is a regular object with at least a `time` (which points to a `Date` object that says when the user responded to the quiz) and a `recalled` key (which is either true or false, where true means that they got it right). Here's an example of a stack of cards in this format:
 
 ```js
-var cards = [
-	{
-		front: 'ostensible',
-		back: 'stated or appearing to be true, but not necessarily so.',
-		history: [
-			{
-				time: new Date(),
-				recalled: true
-			}
-		]
-	},
-	{
-		front: 'palpable',
-		back: 'able to be touched or felt.',
-		history: [
-			{
-				time: new Date(),
-				recalled: false
-			}
-		]
-	}
+const cards = [
+  {
+    front: 'ostensible',
+    back: 'stated or appearing to be true, but not necessarily so.',
+    history: [
+      {
+        time: new Date(),
+        recalled: true
+      }
+    ]
+  },
+  {
+    front: 'palpable',
+    back: 'able to be touched or felt.',
+    history: [
+      {
+        time: new Date(),
+        recalled: false
+      }
+    ]
+  }
 ]
 ```
 
@@ -45,7 +45,7 @@ node
 And then type in:
 
 ```js
-var f = require('flashcardz')
+const f = require('flashcardz')
 ```
 
 Finally, copy and paste the example data set near the top of this documentation.
@@ -164,9 +164,9 @@ Just like `f.hardest()` except this one is for the easiest card(s).
 Given some sort of `data` (which is not in the flashcardz format) and the type of data (`type`), this will the data in the Flashcardz format. Currently, there are only 4 types accepted. One is 'tab/newline', in which the front and back of each card is separated by a tab and each card is separated by a newline. Here's an example:
 
 ```js
-var exampleTabNewline = 'front of card' + '\t' + 'back of card' +
-	'\n' + 'front of a different card' + '\t' + 'back of this card' +
-	'\n' + '' + '\t' + 'the front of this card will be "unspecified"'
+const exampleTabNewline = 'front of card' + '\t' + 'back of card' +
+  '\n' + 'front of a different card' + '\t' + 'back of this card' +
+  '\n' + '' + '\t' + 'the front of this card will be "unspecified"'
 
 f.convert(exampleTabNewline, 'tab/newline') // returns something like:
 // [{front: 'front of card', back: 'back of card', history: []}, ...]
@@ -176,8 +176,8 @@ You can also provide `f.convert` with streams as data instead of strings. In add
 
 ```js
 f.convert({
-	ostensible: 'stated or appearing to be true, but not necessarily so.',
-	palpable: 'able to be touched or felt.'
+  ostensible: 'stated or appearing to be true, but not necessarily so.',
+  palpable: 'able to be touched or felt.'
 }, 'objecty') // puts those^ flashcards into the Flashcardz format
 ```
 
@@ -185,28 +185,28 @@ f.convert({
 
 ```js
 f.convert([
-	{
-		front: 'ostensible',
-		history: [{time: new Date(), recalled: true}]
-	},
-	{
-		front: 'palpable',
-		back: 'able to be touched or felt.'
-	}
+  {
+    front: 'ostensible',
+    history: [{time: new Date(), recalled: true}]
+  },
+  {
+    front: 'palpable',
+    back: 'able to be touched or felt.'
+  }
 ], 'nice')
-//	Returns:
-//	[
-//		{
-//			front: 'ostensible',
-//			back: 'unspecified',
-//			history: [{time: new Date(), recalled: true}]
-//		},
-//		{
-//			front: 'palpable',
-//			back: 'able to be touched or felt.',
-//			history: []
-//		}
-//	]
+// Returns:
+// [
+//   {
+//     front: 'ostensible',
+//     back: 'unspecified',
+//     history: [{time: new Date(), recalled: true}]
+//   },
+//   {
+//     front: 'palpable',
+//     back: 'able to be touched or felt.',
+//     history: []
+//   }
+// ]
 ```
 
 In addition, there's a "single" type, which is just like the "nice" type, except "single" is for normalizing a single card.
