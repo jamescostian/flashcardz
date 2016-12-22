@@ -87,6 +87,9 @@ describe('stats', () => {
         history: makeHistory(0, 0)
       }) < 0).toBe(true)
     })
+    it('has a good implementation of makeDescending', () => {
+      expect([4, 4, 2, 6, 7, 3, 8, 9, 1].sort(sort.makeDescending((a, b) => a - b))).toEqual([9, 8, 7, 6, 4, 4, 3, 2, 1])
+    })
   })
   describe('pick', () => {
     it('works', () => {
