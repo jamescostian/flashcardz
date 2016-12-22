@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Use Jest instead of tape + NYC
 
 ### Removed
-- Support for versions of Node before v5
+- Support for versions of Node before v6
 - `f.copy` - the implementation was poor, and in any case, `Object.assign({}, card)` is available in this day and age.
 
 ## [v0.2.3][0.2.3] - 2016-12-11
