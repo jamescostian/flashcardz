@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [v1.0.0][1.0.0] - 2016-12-23
 ### Added
 - Support for Node v6 and beyond
 
@@ -92,7 +92,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
-[unreleased]: https://github.com/jamescostian/flashcardz/compare/v0.2.3...HEAD
+[1.0.0]: https://github.com/jamescostian/flashcardz/compare/v0.2.3...v1.0.0
 [0.2.3]: https://github.com/jamescostian/flashcardz/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/jamescostian/flashcardz/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jamescostian/flashcardz/compare/v0.2.0...v0.2.1
