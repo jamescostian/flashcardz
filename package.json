@@ -11,14 +11,15 @@
   },
   "dependencies": {
     "commander": "^2",
-    "inquirer": "^2",
+    "inquirer": "^3",
     "stream-string": "^2"
   },
   "devDependencies": {
     "coveralls": "^2",
-    "jest": "^18",
+    "jest": "^19",
     "mock-stdin": "^0.3",
-    "snazzy": "^5",
+    "snazzy": "^7",
+    "standard": "^10",
     "std-mocks": "^1"
   },
   "homepage": "https://github.com/jamescostian/flashcardz",
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "pretest": "snazzy",
+    "pretest": "standard | snazzy",
     "test": "jest"
   },
   "standard": {
