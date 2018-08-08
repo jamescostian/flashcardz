@@ -91,4 +91,4 @@ Contributions welcome! Please read the [contributing guidelines](https://github.
 
 ## License
 
-This is licensed under the [MIT License](https://github.com/jamescostian/flashcardz/blob/master/LICENSE)
+This is licensed under the [ISC License](https://github.com/jamescostian/flashcardz/blob/master/LICENSE)
