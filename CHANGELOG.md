@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.1][1.0.1] - 2018-08-07
+### Added
+- "Features" section to README
+- Test against Node v8-v10 (in addition to already testing v6 and v7)
+
+### Changed
+- Update dependencies
+- Minor improvements to Docs
+
 ## [v1.0.0][1.0.0] - 2016-12-23
 ### Added
 - Support for Node v6 and beyond
