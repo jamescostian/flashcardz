@@ -2,7 +2,6 @@
 
 [![Build Status](https://img.shields.io/travis/jamescostian/flashcardz.svg?style=flat)](https://travis-ci.org/jamescostian/flashcardz)
 [![Coverage Status](https://img.shields.io/coveralls/jamescostian/flashcardz.svg?style=flat)](https://coveralls.io/r/jamescostian/flashcardz?branch=master)
-[![Dependency Status](https://img.shields.io/gemnasium/jamescostian/flashcardz.svg?style=flat)](https://gemnasium.com/jamescostian/flashcardz)
 [![License](https://img.shields.io/npm/l/flashcardz.svg?style=flat)](https://github.com/jamescostian/flashcardz/blob/master/LICENSE)
 [![NPM Version](https://img.shields.io/npm/v/flashcardz.svg?style=flat)](https://www.npmjs.com/package/flashcardz)
 
