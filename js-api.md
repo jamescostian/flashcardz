@@ -249,7 +249,7 @@ f.quiz(cards, require('flashcardz/cli-quizzer'), f.pick.random)
 
 # `f.pick.smart(options)`
 
-Given an object with options, returns a smart picker function for use with `f.quiz()`. The only option currently supported is acceptance, which defaults to 2. The value of acceptance is the number of times the person is supposed to correctly recall a card sequentially. So, if the acceptance is at 2, the picker will be biased to choose cards that not even been seen two times or that were not correctly recalled according to their 2 most recent events in their `history`. In addition, assuming that the acceptance is 2, cards that were recalled correctly according to one or two of their most recent event in their `history` will be avoided - the picker will specifically try to avoid showing you them, because you've already gotten them right twice.
+Given an object with options, returns a smart picker function for use with `f.quiz()`. The only option currently supported is acceptance, which defaults to 2. The value of acceptance is the number of times the person is supposed to correctly recall a card sequentially. So, if the acceptance is at *2*, the picker will be biased to choose cards that have not even been seen *2* times or that were not correctly recalled according to their *2* most recent events in their `history`. In addition, assuming that the acceptance is *2*, cards that were recalled correctly accordint to *2* of their most recent event in their `history` will be avoided - the picker will specifically try to avoid showing you them, because you've already gotten them right *2* times.
 
 Here's an example of how to use it:
 
