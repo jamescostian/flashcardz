@@ -10,20 +10,21 @@
     "url": "https://github.com/jamescostian/flashcardz/issues"
   },
   "dependencies": {
-    "commander": "^2.11.0",
-    "inquirer": "^3.1.1",
+    "commander": "^2",
+    "inquirer": "^6",
     "stream-string": "^2"
   },
   "devDependencies": {
-    "coveralls": "^2",
-    "jest": "^20.0.4",
+    "coveralls": "^3",
+    "jest": "^23",
     "mock-stdin": "^0.3",
     "snazzy": "^7",
-    "standard": "^10",
+    "standard": "^11",
     "std-mocks": "^1"
   },
   "homepage": "https://github.com/jamescostian/flashcardz",
   "jest": {
+    "testURL": "http://localhost/",
     "testRegex": "(tests/(.*))\\.test\\.js$",
     "coverageReporters": [
       "json",
