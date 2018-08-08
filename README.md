@@ -7,14 +7,14 @@
 
 Intelligently quizzes you
 
-Some features:
+## Features
 
 * Small typos are (pretty intelligently) [ignored](tests/check-answer.test.js)
 * You won't be quizzed too much over things you get right
 * You'll be quizzed a lot over things you get wrong
 * You won't see the same card over and over again (assuming you have enough cards); you'll get enough variety to learn
-* Can import stacks of cards from [Quizlet](http://quizlet.com/)
-* Comes with a [CLI](cli.md) to handle all of the boring, simple things
+* Importing stacks of cards from [Quizlet](http://quizlet.com/) works
+* Comes with a [CLI](cli.md) that can help with basic things like removing duplicate cards or deleting your history of getting cards right/wrong
 * Comes with an [API](js-api.md) so that you can get quizzed from any interface (not just a terminal emulator)
 
 ## Install
