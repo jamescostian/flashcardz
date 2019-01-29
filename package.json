@@ -18,8 +18,8 @@
     "coveralls": "^3",
     "jest": "^23",
     "mock-stdin": "^0.3",
-    "snazzy": "^7",
-    "standard": "^11",
+    "snazzy": "^8",
+    "standard": "^12",
     "std-mocks": "^1"
   },
   "homepage": "https://github.com/jamescostian/flashcardz",

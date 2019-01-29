@@ -1,5 +1,5 @@
 const f = require('../lib/module.js')
-const {readFileSync, writeFileSync} = require('fs')
+const { readFileSync, writeFileSync } = require('fs')
 let stack
 let thePath
 module.exports = (path, options) => {

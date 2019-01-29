@@ -4,7 +4,7 @@ module.exports = stackOrCard => {
     return {
       front: stackOrCard.front,
       back: stackOrCard.back,
-      history: stackOrCard.history.map(event => ({recalled: event.recalled, time: null}))
+      history: stackOrCard.history.map(event => ({ recalled: event.recalled, time: null }))
     }
   } else {
     // This is a stack of cards, so put each card through this method
