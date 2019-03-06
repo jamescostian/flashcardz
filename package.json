@@ -10,13 +10,13 @@
     "url": "https://github.com/jamescostian/flashcardz/issues"
   },
   "dependencies": {
-    "commander": "^2",
-    "inquirer": "^6",
-    "stream-string": "^2"
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.2",
+    "stream-string": "^2.0.1"
   },
   "devDependencies": {
-    "coveralls": "^3",
-    "jest": "^23",
+    "coveralls": "^3.0.3",
+    "jest": "^24",
     "mock-stdin": "^0.3",
     "snazzy": "^8",
     "standard": "^12",
