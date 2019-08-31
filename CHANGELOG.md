@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.3][1.0.3] - 2019-08-31
+### Changed
+- Upgrade dependencies
+
 ## [v1.0.2][1.0.2] - 2018-08-08
 ### Changed
 - The README said "MIT" license, but the LICENSE file was actually ISC. Now they are both in agreement (this project is under the ISC license)
@@ -105,6 +109,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
+[1.0.3]: https://github.com/jamescostian/flashcardz/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/jamescostian/flashcardz/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jamescostian/flashcardz/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jamescostian/flashcardz/compare/v0.2.3...v1.0.0
