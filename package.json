@@ -15,8 +15,8 @@
     "stream-string": "^2.0.1"
   },
   "devDependencies": {
-    "coveralls": "^3.0.4",
-    "jest": "^24.8.0",
+    "coveralls": "^3.0.6",
+    "jest": "^24.9.0",
     "mock-stdin": "^0.3",
     "snazzy": "^8",
     "standard": "^12",
