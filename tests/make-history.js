@@ -1,5 +1,5 @@
 module.exports = (right, wrong) => {
-  let history = []
+  const history = []
   for (let i = 0; i < right; i += 1) {
     history.push({
       recalled: true,

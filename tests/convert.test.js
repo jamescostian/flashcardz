@@ -22,9 +22,9 @@ it('convert', () => {
   ]
 
   expect(convert({
-    'ostensible': 'stated or appearing to be true, but not necessarily so.',
-    'palpable': 'able to be touched or felt.',
-    'diaphanous': '(especially of fabric) light, delicate, and translucent.'
+    ostensible: 'stated or appearing to be true, but not necessarily so.',
+    palpable: 'able to be touched or felt.',
+    diaphanous: '(especially of fabric) light, delicate, and translucent.'
   }, 'objecty')).toEqual(cards)
 
   cards[1].back = 'unspecified'

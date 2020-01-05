@@ -38,9 +38,9 @@ var cliQuizzer = function (options) {
     if (options.show === 'both' || options.show === 'all') {
       showThis = 'Front: "' + card.front + '"\n  Back: "' + card.back + '"'
       if (options.answer === 'front') {
-        x = card['back']
+        x = card.back
       } else {
-        x = card['front']
+        x = card.front
       }
     } else {
       showThis = card[options.show]

@@ -32,17 +32,17 @@ describe('stats', () => {
     // expected is the expected output for ALL OF THE SORTING ALGORITHMS.
     // The input was specifically picked so that only 1 expected output would be required.
     expected = [
-      {// hardness = 1/6
+      { // hardness = 1/6
         front: 'ostensible',
         back: 'stated or appearing to be true, but not necessarily so.',
         history: makeHistory(5, 1)
       },
-      {// hardness = 2/9
+      { // hardness = 2/9
         front: 'diaphanous',
         back: '(especially of fabric) light, delicate, and translucent.',
         history: makeHistory(7, 2)
       },
-      {// hardness = 6/15
+      { // hardness = 6/15
         front: 'palpable',
         back: 'able to be touched or felt.',
         history: makeHistory(9, 6)
@@ -52,19 +52,19 @@ describe('stats', () => {
 
   describe('sort', () => {
     it('works when sorting by missesAscending', () => {
-      let actual = convert(input, 'nice').sort(sort.missesAscending)
+      const actual = convert(input, 'nice').sort(sort.missesAscending)
       expect(nullifyTimes(actual)).toEqual(nullifyTimes(expected))
     })
     it('works when sorting by hitsAscending', () => {
-      let actual = convert(input, 'nice').sort(sort.hitsAscending)
+      const actual = convert(input, 'nice').sort(sort.hitsAscending)
       expect(nullifyTimes(actual)).toEqual(nullifyTimes(expected))
     })
     it('works when sorting by hardnessAscending', () => {
-      let actual = convert(input, 'nice').sort(sort.hardnessAscending)
+      const actual = convert(input, 'nice').sort(sort.hardnessAscending)
       expect(nullifyTimes(actual)).toEqual(nullifyTimes(expected))
     })
     it('works when sorting by timesSeenAscending', () => {
-      let actual = convert(input, 'nice').sort(sort.timesSeenAscending)
+      const actual = convert(input, 'nice').sort(sort.timesSeenAscending)
       expect(nullifyTimes(actual)).toEqual(nullifyTimes(expected))
     })
     it('works when sorting multiple cards with {right: 0, wrong: 0} by hardnessAscending', () => {
@@ -140,7 +140,7 @@ describe('stats', () => {
 
   describe('gotWrong, gotRight, and counts', () => {
     it('can find the right/wrong counts and nullify times', () => {
-      let newExpected = gotWrong(expected, 0)
+      const newExpected = gotWrong(expected, 0)
       expected[0].history.push({
         recalled: false,
         time: new Date()
@@ -150,7 +150,7 @@ describe('stats', () => {
       expect(rightWrong(newExpected, 0)).toEqual({ right: 5, wrong: 2 })
     })
     it('can find the right/wrong counts and nullify times', () => {
-      let newExpected = gotRight(expected, 1)
+      const newExpected = gotRight(expected, 1)
       expected[1].history.push({
         recalled: true,
         time: new Date()
