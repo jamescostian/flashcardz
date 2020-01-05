@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [v1.0.4][1.0.4] - 2019-01-05
+### Changed
+- Upgrade dependencies
+
 ## [v1.0.3][1.0.3] - 2019-08-31
 ### Changed
 - Upgrade dependencies
@@ -109,6 +113,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## v0.1.0 - 2015-02-13
 This was a preview release
 
+[1.0.4]: https://github.com/jamescostian/flashcardz/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/jamescostian/flashcardz/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/jamescostian/flashcardz/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jamescostian/flashcardz/compare/v1.0.0...v1.0.1
